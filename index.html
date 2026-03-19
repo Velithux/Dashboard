@@ -3,59 +3,600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$VLTH Token Dashboard</title>
-    <meta name="description" content="Live dashboard for $VLTH autonomous AI token on Sepolia. Real-time stats, decisions, transactions.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<title>$VLTH - Velith AI Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+:root {
+  --bg: #060608;
+  --bg2: #0e0e18;
+  --gold: #F5C518;
+  --gold-glow: #f5c51844;
+  --blue: #1B3A8C;
+  --blue-light: #4A6FD4;
+  --red: #C0392B;
+  --red-light: #E74C3C;
+  --black: #0a0a0a;
+  --white: #F5F0E8;
+  --muted: #6b6b7a;
+  --green: #00E5A0;
+  --purple: #9B5CF6;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 16px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(90deg, transparent 0 1px, var(--blue) 1px 2px),
+    repeating-linear-gradient(0deg, transparent 0 1px, var(--blue) 1px 2px),
+    radial-gradient(ellipse at 30% 20%, var(--blue-light) 0%, transparent 50%);
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Sticky Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6, 6, 8, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--gold-glow);
+  padding: 16px 0;
+  box-shadow: var(--shadow);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  position: relative;
+  animation: goldPulse 2s ease-in-out infinite alternate;
+  box-shadow: 0 0 0 2px var(--gold-glow);
+}
+
+.logo-img::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: conic-gradient(var(--gold), transparent 60%);
+  z-index: -1;
+  animation: rotateRing 3s linear infinite;
+}
+
+.logo-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  background: linear-gradient(135deg, var(--gold), #FFD700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contract-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--bg2);
+  border: 1px solid var(--blue-light);
+  border-radius: var(--radius);
+  color: var(--blue-light);
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.contract-pill:hover {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 0 20px var(--blue-glow);
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 120px 0 80px;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(4rem, 12vw, 8rem);
+  background: linear-gradient(135deg, var(--gold), #FFD700, var(--gold));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  animation: shimmer 4s ease infinite;
+  filter: drop-shadow(0 0 32px var(--gold-glow));
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-subtitle {
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--red-light);
+  margin-bottom: 12px;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 1rem;
+  color: var(--green);
+  font-weight: 500;
+}
+
+.live-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Stats */
+.stats-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.stats-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: shimmerLine 2s ease-in-out infinite;
+}
+
+@keyframes shimmerLine {
+  0%, 100% { box-shadow: 0 0 10px var(--gold-glow); }
+  50% { box-shadow: 0 0 20px var(--gold); }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 64px;
+}
+
+.stat-card {
+  background: var(--bg2);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px rgba(245, 197, 24, 0.15);
+}
+
+.stat-number {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.1;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.stat-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Decisions */
+.decision-section {
+  padding: 80px 0 120px;
+}
+
+.decision-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: shimmerLine 2s ease-in-out infinite;
+}
+
+.decision-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  background: linear-gradient(135deg, var(--gold), var(--blue-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.decisions-feed {
+  max-height: 600px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.decisions-feed::-webkit-scrollbar {
+  width: 8px;
+}
+
+.decisions-feed::-webkit-scrollbar-track {
+  background: var(--bg2);
+  border-radius: 4px;
+}
+
+.decisions-feed::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+.decision-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--gold-glow);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.decision-card:hover {
+  border-left-color: var(--gold);
+  box-shadow: var(--shadow);
+  transform: translateX(8px);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 20px;
+}
+
+.badge-burn { background: var(--gold-glow); color: var(--gold); }
+.badge-price { background: rgba(26, 58, 140, 0.2); color: var(--blue); border: 1px solid var(--blue-light); }
+.badge-yield { background: rgba(192, 57, 43, 0.2); color: var(--red); border: 1px solid var(--red-light); }
+
+.decision-reason {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.meta-info {
+  display: flex;
+  gap: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.meta-value {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.loading-skeleton, .error-state {
+  padding: 64px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--gold-glow);
+  border-top: 3px solid var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.last-updated {
+  text-align: center;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.875rem;
+  margin: 64px 0;
+}
+
+/* Footer */
+footer {
+  background: var(--blue);
+  padding: 48px 0 32px;
+  text-align: center;
+  color: var(--white);
+}
+
+.footer-link {
+  color: var(--gold);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; gap: 16px; }
+  .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+  .stat-number { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+  .stat-card { padding: 28px 20px; }
+  .meta-info { flex-direction: column; gap: 8px; }
+  .decisions-feed { max-height: 400px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+    </style>
 </head>
-<body data-theme="dark">
+<body>
     <div class="container">
-        <header>
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <img src="VLTH.png" alt="VLTH Logo - $VLTH Token" width="60" height="60" style="border-radius: 50%; box-shadow: 0 4px 12px rgba(0,255,136,0.3);">
-                <div>
-                    <h1>$VLTH</h1>
-                    <p class="subtitle">Professional Live Dashboard - Sepolia Testnet | Autonomous AI Token</p>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-inner">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="VLTH.png" alt="Velith" class="logo-img">
+                    <div class="logo-title">$VLTH</div>
+                </div>
+                <a href="https://sepolia.etherscan.io/address/0xBFb61673C292e4732231aA7e31EAF2Cb67F71fFb" target="_blank" class="contract-pill">
+                    0xBFb6...fFb ↗
+                </a>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <h1 class="hero-title">$VLTH</h1>
+            <p class="hero-subtitle">The first AI-governed crypto</p>
+            <div class="live-badge">
+                <div class="live-dot"></div>
+                LIVE · Sepolia Testnet
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats-section">
+            <div class="stats-grid" id="statsGrid">
+                <div class="loading-skeleton">
+                    <div class="spinner"></div>
+                    Initializing neural network metrics...
                 </div>
             </div>
-            <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Theme" aria-label="Toggle theme">
-                <span class="sun" aria-hidden="true"></span>
-                <span class="moon" aria-hidden="true"></span>
-            </button>
-        </header>
-        
-        <div id="errorBanner"></div>
-        
-        <div class="stats-grid" id="statsGrid">
-            <div class="loading card"><div class="spinner"></div>Initializing connection...</div>
-        </div>
-        
-        <div class="decisions-section">
-            <h2 class="section-header">🧠 AI Decisions Feed (Latest 10 Executed)</h2>
-            <div id="decisionsList" class="list"></div>
-        </div>
+            <div class="last-updated" id="lastUpdate"></div>
+        </section>
 
-        <div class="tx-section">
-            <h2 class="section-header">📊 Recent Transactions (Last 10)</h2>
-            <div id="txList" class="list">
-                <div class="loading"><div class="spinner"></div>Loading...</div>
+        <!-- Decisions -->
+        <section class="decision-section">
+            <h2 class="decision-title">Neural AI Decisions Feed</h2>
+            <div id="decisionsList" class="decisions-feed">
+                <div class="loading-skeleton">
+                    <div class="spinner"></div>
+                    Loading autonomous decisions...
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="decisions-section">
-            <h2 class="section-header">📈 Supply Distribution Chart</h2>
-            <div class="card">
-                <canvas id="burnChart" class="chart-container"></canvas>
-            </div>
-        </div>
+        <!-- Footer -->
+        <footer>
+            <p>🛠 Built on Ethereum <a href="https://sepolia.etherscan.io/address/0xBFb61673C292e4732231aA7e31EAF2Cb67F71fFb" target="_blank" class="footer-link">View Contract</a> <span style="color: var(--muted);">· Powered by AI</span></p>
+        </footer>
     </div>
 
-    <script src="script.js"></script>
+    <!-- JavaScript unchanged -->
+    <script>
+        const CONTRACT_ADDRESS = '0xBFb61673C292e4732231aA7e31EAF2Cb67F71fFb';
+        const ABI = [{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiExecuteBurn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"newPrice","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiProposePrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"activate","type":"bool"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiToggleYield","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getAIDecision","outputs":[{"components":[{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"string","name":"actionType","type":"string"},{"internalType":"string","name":"reason","type":"string"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"internalType":"struct TokenPicsou.AIDecision","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAIDecisionCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLastAIActionTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTokenPriceUSD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTreasuryFeeBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"burnThreshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"circulatingSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalBurned","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
+        const SEPOLIA_RPC = 'https://ethereum-sepolia-rpc.publicnode.com';
+
+        let provider, contract;
+
+        async function init() {
+            try {
+                provider = new ethers.JsonRpcProvider(SEPOLIA_RPC);
+                contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+                await updateDashboard();
+                setInterval(updateDashboard, 30000);
+            } catch (error) {
+                console.error('Init error:', error);
+                showError('Neural connection failed: ' + error.message);
+            }
+        }
+
+        async function updateDashboard() {
+            try {
+                const [price, circ, burned, count] = await Promise.all([
+                    contract.getTokenPriceUSD(),
+                    contract.circulatingSupply(),
+                    contract.getTotalBurned(),
+                    contract.getAIDecisionCount()
+                ]);
+
+                updateStats(price, circ, burned);
+                document.getElementById('lastUpdate').textContent = `Neural sync: ${new Date().toLocaleString()}`;
+                await updateDecisions(count);
+            } catch (error) {
+                console.error('Update error:', error);
+                showError('Sync failed: ' + error.message);
+            }
+        }
+
+        function updateStats(price, circ, burned) {
+            const priceUSD = parseFloat(ethers.formatUnits(price, 18)).toFixed(6);
+            const circVLTH = parseFloat(ethers.formatUnits(circ, 18)).toLocaleString('en-US');
+            const burnedVLTH = parseFloat(ethers.formatUnits(burned, 18)).toLocaleString('en-US');
+
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">$${priceUSD}</div>
+                    <div class="stat-title">Neural Price</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${circPICSOU}</div>
+                    <div class="stat-title">Circ Supply</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${burnedPICSOU}</div>
+                    <div class="stat-title">Burned Tokens</div>
+                </div>
+            `;
+        }
+
+        async function updateDecisions(count) {
+            const list = document.getElementById('decisionsList');
+            list.innerHTML = '<div class="loading-skeleton"><div class="spinner"></div>Loading neural decisions...</div>';
+
+            if (Number(count) === 0) {
+                list.innerHTML = '<div class="loading-skeleton">Neural network initializing...</div>';
+                return;
+            }
+
+            try {
+                const decisions = [];
+                for (let i = Number(count) - 1; i >= 0 && decisions.length < 20; i--) {
+                    const dec = await contract.getAIDecision(i);
+                    if (dec.executed) {
+                        decisions.push({
+                            action: dec.actionType,
+                            reason: dec.reason,
+                            value: ethers.formatUnits(dec.value, 18),
+                            timestamp: new Date(Number(dec.timestamp) * 1000).toLocaleString()
+                        });
+                    }
+                }
+
+                const html = decisions.map(d => {
+                    let badgeClass = 'badge-burn';
+                    if (d.action.includes('PRICE')) badgeClass = 'badge-price';
+                    if (d.action.includes('YIELD')) badgeClass = 'badge-yield';
+                    
+                    return `
+                        <div class="decision-card">
+                            <div class="badge ${badgeClass}">${d.action}</div>
+                            <div class="decision-reason">${d.reason}</div>
+                            <div class="meta-info">
+                                <span class="meta-value">${parseFloat(d.value).toLocaleString()} VLTH</span>
+                                <span>${d.timestamp}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('') || '<div class="loading-skeleton">No neural decisions executed</div>';
+
+                list.innerHTML = html;
+            } catch (error) {
+                list.innerHTML = `<div class="error-state">Neural feed error: ${error.message}</div>`;
+            }
+        }
+
+        function showError(msg) {
+            document.getElementById('statsGrid').innerHTML = `<div class="error-state">${msg}</div>`;
+            document.getElementById('decisionsList').innerHTML = '<div class="error-state">Neural connection disrupted</div>';
+        }
+
+        window.addEventListener('load', init);
+    </script>
 </body>
 </html>
-
