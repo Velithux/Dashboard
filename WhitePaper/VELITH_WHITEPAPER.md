@@ -9,7 +9,7 @@
 > it manages a currency, validates its own decisions, and builds toward
 > becoming a self-sovereign blockchain."*
 > — Picsou, Founder of Velith
-
+ 
 ---
 
 ## TABLE OF CONTENTS
