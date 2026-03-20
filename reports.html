@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+    <title>$VLTH - VELA Weekly Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+/* Exact same CSS as index.html - copied fully */
+:root {
+  --bg: #060608;
+  --bg2: #0e0e18;
+  --gold: #F5C518;
+  --gold-glow: #f5c51844;
+  --blue: #1B3A8C;
+  --blue-light: #4A6FD4;
+  --red: #C0392B;
+  --red-light: #E74C3C;
+  --black: #0a0a0a;
+  --white:  #F5F0E8;
+  --muted: #6b6b7a;
+  --green: #00E5A0;
+  --purple: #9B5CF6;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 16px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Mono', monospace; background: var(--bg); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 1px, var(--blue) 1px 2px), repeating-linear-gradient(0deg, transparent 0 1px, var(--blue) 1px 2px), radial-gradient(ellipse at 30% 20%, var(--blue-light) 0%, transparent 50%); opacity: 0.1; z-index: -1; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+.header { position: sticky; top: 0; z-index: 100; background: rgba(6, 6, 8, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gold-glow); padding: 16px 0; box-shadow: var(--shadow); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.logo-img { width: 52px; height: 52px; border-radius: 50%; position: relative; animation: goldPulse 2s ease-in-out infinite alternate; box-shadow: 0 0 0 2px var(--gold-glow); }
+.logo-img::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: conic-gradient(var(--gold), transparent 60%); z-index: -1; animation: rotateRing 3s linear infinite; }
+.logo-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.25rem); background: linear-gradient(135deg, var(--gold), #FFD700); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-pill { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: var(--bg2); border: 1px solid var(--blue-light); border-radius: var(--radius); color: var(--blue-light); text-decoration: none; font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.875rem; transition: var(--transition); }
+.nav-pill:hover { background: var(--blue); color: var(--white); box-shadow: 0 0 20px var(--blue-glow); }
+.reports-hero { text-align: center; padding: 120px 0 80px; }
+.reports-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(4rem, 12vw, 8rem); background: linear-gradient(135deg, var(--gold), #FFD700, var(--gold)); background-size: 300% 300%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px; letter-spacing: -0.02em; animation: shimmer 4s ease infinite; filter: drop-shadow(0 0 32px var(--gold-glow)); }
+@keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.reports-subtitle { font-family: 'Syne', sans-serif; font-weight: 500; font-size: clamp(1.25rem, 3vw, 1.75rem); color: var(--purple); margin-bottom: 12px; }
+.reports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 64px; }
+.report-card { background: var(--bg2); border: 1px solid var(--gold-glow); border-radius: var(--radius); padding: 32px; transition: var(--transition); }
+.report-card:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-4px); }
+.report-date { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 16px; }
+.report-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.metric { text-align: center; }
+.metric-value { font-family: 'DM Mono'; font-size: 1.25rem; font-weight: 500; color: var(--white); }
+.metric-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.commentary { background: rgba(155, 92, 246, 0.1); border-left: 4px solid var(--purple); padding: 20px; border-radius: 8px; font-style: italic; color: var(--white); line-height: 1.5; }
+.download-btn { background: var(--gold); color: var(--black); border: none; padding: 12px 24px; border-radius: var(--radius); font-family: 'DM Mono'; font-weight: 500; cursor: pointer; transition: var(--transition); width: 100%; margin-top: 20px; }
+.download-btn:hover { background: #FFD700; transform: translateY(-2px); box-shadow: 0 10px 25px var(--gold-glow); }
+.no-reports { grid-column: 1 / -1; text-align: center; padding: 80px; color: var(--muted); }
+.spinner { width: 48px; height: 48px; border: 3px solid var(--gold-glow); border-top: 3px solid var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 24px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+footer { background: var(--blue); padding: 48px 0 32px; text-align: center; color: var(--white); }
+.footer-link { color: var(--gold); font-weight: 500; text-decoration: none; }
+.footer-link:hover { text-decoration: underline; }
+@media (max-width: 768px) { .header-inner { flex-direction: column; gap: 16px; } .reports-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="VLTH.png" alt="Velith" class="logo-img">
+                    <div class="logo-title">$VLTH</div>
+                </div>
+                <a href="index.html" class="nav-pill">← Dashboard</a>
+                <a href="https://sepolia.etherscan.io/address/0x18334D731FC40df8544729504fD0dC35040490E4" target="_blank" class="nav-pill">Contract ↗</a>
+            </div>
+        </header>
+        <section class="reports-hero">
+            <h1 class="reports-title">VELA</h1>
+            <p class="reports-subtitle">Weekly Intelligence Reports</p>
+        </section>
+        <div class="reports-grid" id="reportsGrid">
+            <div class="no-reports">
+                <div class="spinner"></div>
+                Loading VELA reports...
+            </div>
+        </div>
+        <footer>
+            <p>🛠 VELA Reports <span style="color: var(--muted);">· Generated by AI Agent</span></p>
+        </footer>
+    </div>
+    <script>
+let reports = [];
+async function loadReports() {
+    try {
+        const resp = await fetch('../ai_agent/reports/');
+        const files = await resp.json();  // Assume dir listing or adjust for static server
+        for (const file of files) {
+if (file.endsWith('.json') || file.endsWith('.pdf')) {
+                const reportResp = await fetch(`../ai_agent/reports/${file}`);
+                const report = await reportResp.json();
+                reports.push({file, ...report});
+            }
+        }
+    } catch (e) {
+        console.error('Reports load failed', e);
+    }
+    renderReports();
+}
+async function renderReports() {
+    const grid = document.getElementById('reportsGrid');
+    if (!reports.length) {
+        grid.innerHTML = '<div class="no-reports">No weekly reports yet. Check back Sundays!</div>';
+        return;
+    }
+    reports.sort((a,b) => new Date(b.week_end) - new Date(a.week_end));
+    grid.innerHTML = reports.map(r => {
+        const pct = (r.price_change_pct * 100).toFixed(1);
+        const pctClass = pct >= 0 ? 'positive' : 'negative';
+        return `
+            <div class="report-card">
+                <div class="report-date">${r.week_start} → ${r.week_end}</div>
+                <div class="report-metrics">
+                    <div class="metric">
+                        <div class="metric-value">${r.total_decisions}</div>
+                        <div class="metric-label">Decisions</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">${r.burn_count}</div>
+                        <div class="metric-label">Burns</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">${r.total_burned_vlth.toLocaleString()}</div>
+                        <div class="metric-label">VLTH Burned</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">${pct}% <span class="${pctClass}">Δ</span></div>
+                        <div class="metric-label">Price Chg</div>
+                    </div>
+                </div>
+                <div class="commentary">${r.vela_commentary}</div>
+onclick="downloadReport('${r.file}')">📥 Download Report</button>
+            </div>
+        `;
+    }).join('');
+}
+function downloadReport(filename) {
+    const url = `../ai_agent/reports/${filename}`;
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+}
+window.addEventListener('load', loadReports);
+    </script>
+</body>
+</html>
