@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+    <title>$VLTH - Predictions Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+:root {
+  --bg: #060608;
+  --bg2: #0e0e18;
+  --gold: #F5C518;
+  --gold-glow: #f5c51844;
+  --blue: #1B3A8C;
+  --blue-light: #4A6FD4;
+  --red: #C0392B;
+  --red-light: #E74C3C;
+  --black: #0a0a0a;
+  --white:  #F5F0E8;
+  --muted: #6b6b7a;
+  --green: #00E5A0;
+  --yellow: #F7B500;
+  --gray: #A0A0A0;
+  --purple: #9B5CF6;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 16px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 1px, var(--blue) 1px 2px), repeating-linear-gradient(0deg, transparent 0 1px, var(--blue) 1px 2px), radial-gradient(ellipse at 30% 20%, var(--blue-light) 0%, transparent 50%);
+  opacity: 0.1;
+  z-index: -1;
+}
+.container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+/* Header same as index.html */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6, 6, 8, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--gold-glow);
+  padding: 16px 0;
+  box-shadow: var(--shadow);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.logo-img { width: 52px; height: 52px; border-radius: 50%; position: relative; animation: goldPulse 2s ease-in-out infinite alternate; box-shadow: 0 0 0 2px var(--gold-glow); }
+.logo-img::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: conic-gradient(var(--gold), transparent 60%); z-index: -1; animation: rotateRing 3s linear infinite; }
+.logo-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.25rem); background: linear-gradient(135deg, var(--gold), #FFD700); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+@keyframes goldPulse { 0% { box-shadow: 0 0 0 2px var(--gold-glow); } 100% { box-shadow: 0 0 20px var(--gold); } }
+@keyframes rotateRing { to { transform: rotate(360deg); } }
+.contract-pill {
+  display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: var(--bg2); border: 1px solid var(--blue-light); border-radius: var(--radius); color: var(--blue-light); text-decoration: none; font-family: 'DM Mono', monospace; font-weight: 500; font-size: 0.875rem; transition: var(--transition);
+}
+.contract-pill:hover { background: var(--blue); color: var(--white); box-shadow: 0 0 20px var(--blue-glow); }
+
+/* Hero */
+.hero { text-align: center; padding: 120px 0 80px; }
+.hero-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(4rem, 12vw, 8rem); background: linear-gradient(135deg, var(--gold), #FFD700); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px; letter-spacing: -0.02em; filter: drop-shadow(0 0 32px var(--gold-glow)); }
+.hero-subtitle { font-family: 'Syne', sans-serif; font-weight: 500; font-size: clamp(1.25rem, 3vw, 1.75rem); color: var(--blue-light); margin-bottom: 48px; }
+
+/* Current Prediction */
+.current-pred-section { padding: 80px 0; }
+.current-pred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 48px; }
+.pred-badge {
+  padding: 24px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  border: 3px solid;
+  box-shadow: var(--shadow);
+}
+.badge-bullish { background: rgba(0,229,160,0.2); color: var(--green); border-color: var(--green); }
+.badge-bearish { background: rgba(192,57,43,0.2); color: var(--red); border-color: var(--red); }
+.badge-neutral { background: rgba(160,160,160,0.2); color: var(--gray); border-color: var(--gray); }
+.badge-uncertain { background: rgba(247,181,0,0.2); color: var(--yellow); border-color: var(--yellow); }
+.confidence-bar { background: var(--bg2); height: 12px; border-radius: 6px; overflow: hidden; margin: 24px 0; }
+.conf-bar-fill { height: 100%; transition: width 1s ease; border-radius: 6px; }
+.conf-bull { background: var(--green); }
+.conf-bear { background: var(--red); }
+.conf-neutral { background: var(--gray); }
+.conf-uncertain { background: var(--yellow); }
+.eth-price { font-family: 'DM Mono'; font-size: 1.5rem; font-weight: 500; color: var(--gold); }
+.accuracy { font-family: 'DM Mono'; color: var(--muted); }
+
+/* History Table */
+.history-section { padding: 80px 0; background: var(--bg2); }
+.history-title { font-family: 'Syne'; font-weight: 700; font-size: clamp(2.5rem, 6vw, 4rem); background: linear-gradient(135deg, var(--gold), var(--blue-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 64px; }
+.table-container { overflow-x: auto; background: var(--bg); border-radius: var(--radius); box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; font-family: 'DM Mono'; font-size: 0.9rem; }
+th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--gold-glow); }
+th { background: var(--bg2); font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; }
+tr:hover { background: rgba(245,197,24,0.05); }
+.status-pending { color: var(--gray); }
+.status-success { color: var(--green); }
+.status-fail { color: var(--red); }
+.loading { text-align: center; padding: 64px; color: var(--muted); }
+.spinner { width: 48px; height: 48px; border: 3px solid var(--gold-glow); border-top: 3px solid var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 24px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsive & Footer same */
+@media (max-width: 768px) { .current-pred-grid { grid-template-columns: 1fr; } }
+footer { background: var(--blue); padding: 48px 0 32px; text-align: center; color: var(--white); }
+.footer-link { color: var(--gold); font-weight: 500; text-decoration: none; }
+.footer-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="picsou.png" alt="$VLTH" class="logo-img">
+                    <div class="logo-title">$VLTH</div>
+                </div>
+                <div style="display: flex; gap: 16px;">
+                    <a href="index.html" class="contract-pill">🏠 Dashboard</a>
+                    <a href="predictions.html" class="contract-pill" style="background: var(--green); color: var(--black); border-color: var(--green);">📈 Predictions</a>
+                    <a href="reports.html" class="contract-pill" style="background: var(--gold-glow); color: var(--gold);">📊 Reports</a>
+                    <a href="https://sepolia.etherscan.io/address/0x18334D731FC40df8544729504fD0dC35040490E4" target="_blank" class="contract-pill">Contract ↗</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1 class="hero-title">Predictions</h1>
+            <p class="hero-subtitle">VELA Market Prediction Engine</p>
+        </section>
+
+        <section class="current-pred-section" id="currentPred">
+            <div class="loading">
+                <div class="spinner"></div>
+                <div>Loading current prediction...</div>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <h2 class="history-title">Prediction History (Last 20)</h2>
+            <div class="table-container">
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Prediction</th>
+                            <th>Confidence</th>
+                            <th>ETH Price</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                        <tr><td colspan="5" class="loading">Loading history...</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <p>🧠 VELA Predictor <a href="index.html" class="footer-link">← Back to Dashboard</a></p>
+        </footer>
+    </div>
+
+    <script>
+const GITHUB_LATEST = 'https://raw.githubusercontent.com/Velithux/Dashboard/main/ai_agent/data/latest_prediction.json';
+const GITHUB_HISTORY = 'https://raw.githubusercontent.com/Velithux/Dashboard/main/ai_agent/data/predictions_history.json';
+const LOCAL_LATEST = '../ai_agent/data/latest_prediction.json';
+const LOCAL_HISTORY = '../ai_agent/data/predictions_history.json';
+
+async function fetchJSON(url, fallback) {
+  try {
+    const res = await fetch(url);
+    if (res.ok) return await res.json();
+  } catch (e) { console.log(`GitHub ${url} failed:`, e); }
+  try {
+    const res = await fetch(fallback);
+    if (res.ok) return await res.json();
+  } catch (e) { console.log(`Local fallback failed:`, e); }
+  return null;
+}
+
+function getBadgeClass(pred) {
+  const classes = { 'BULLISH': 'bullish', 'BEARISH': 'bearish', 'NEUTRAL': 'neutral', 'UNCERTAIN': 'uncertain' };
+  return classes[pred] || 'neutral';
+}
+
+function updateCurrentPred(pred) {
+  if (!pred) return;
+  const section = document.getElementById('currentPred');
+  const badgeClass = getBadgeClass(pred.prediction);
+  const confPercent = Math.round(pred.confidence * 100);
+  const confColor = badgeClass === 'bullish' ? 'bull' : badgeClass === 'bearish' ? 'bear' : badgeClass === 'uncertain' ? 'uncertain' : 'neutral';
+  section.innerHTML = `
+    <div class="current-pred-grid">
+      <div class="pred-badge badge-${badgeClass}">
+        ${pred.prediction}
+      </div>
+      <div>
+        <div>Confidence</div>
+        <div class="confidence-bar"><div class="conf-bar-fill conf-${confColor}" style="width: ${confPercent}%"></div></div>
+        <div style="margin-top: 12px; font-size: 0.9rem; color: var(--muted);">${confPercent}%</div>
+      </div>
+      <div class="eth-price">$${pred.eth_price?.toLocaleString() || pred.current_eth_price?.toLocaleString() || 'N/A'}</div>
+      <div class="accuracy">Accuracy: ${Math.round(pred.accuracy_so_far * 100 || 0)}%</div>
+      <div style="font-family: 'DM Mono'; color: var(--muted);">VELA should act: ${pred.vela_should_act ? '✅ YES' : '❌ NO'}</div>
+    </div>
+  `;
+}
+
+function updateHistory(history) {
+  const tbody = document.getElementById('historyBody');
+  if (!history || history.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="loading">No history available</td></tr>';
+    return;
+  }
+  const last20 = history.slice(-20).reverse();
+  const now = Date.now() / 1000;
+  tbody.innerHTML = last20.map(h => {
+    const predClass = getBadgeClass(h.prediction);
+    const timeAgo = ((now - new Date(h.timestamp).getTime() / 1000) / 3600).toFixed(1) + 'h';
+    let result = 'PENDING';
+    if (h.result) {
+      result = h.result === 'SUCCESS' ? 'SUCCESS' : 'FAIL';
+    }
+    return `
+      <tr>
+        <td>${timeAgo}</td>
+        <td><span class="badge-${predClass}" style="font-weight: 600;">${h.prediction}</span></td>
+        <td>${Math.round(h.confidence * 100)}%</td>
+        <td>$${h.eth_price_at_prediction?.toLocaleString()}</td>
+        <td class="status-${result.toLowerCase()}">${result}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function loadData() {
+  const [latest, historyRaw] = await Promise.all([
+    fetchJSON(GITHUB_LATEST, LOCAL_LATEST),
+    fetchJSON(GITHUB_HISTORY, LOCAL_HISTORY)
+  ]);
+  updateCurrentPred(latest);
+  updateHistory(historyRaw);
+}
+
+window.addEventListener('load', () => {
+  loadData();
+  setInterval(loadData, 30000);  // Refresh every 30s
+});
+    </script>
+</body>
+</html>
