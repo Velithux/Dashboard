@@ -92,18 +92,23 @@ footer { background: var(--blue); padding: 48px 0 32px; text-align: center; colo
     <script>
 let reports = [];
 async function loadReports() {
+    const USERNAME = 'Velithux';
     try {
-        const resp = await fetch('../ai_agent/reports/');
-        const files = await resp.json();  // Assume dir listing or adjust for static server
+        const resp = await fetch(`https://api.github.com/repos/${USERNAME}/Dashboard/contents/reports`);
+        const files = await resp.json();
         for (const file of files) {
-if (file.endsWith('.json') || file.endsWith('.pdf')) {
-                const reportResp = await fetch(`../ai_agent/reports/${file}`);
-                const report = await reportResp.json();
-                reports.push({file, ...report});
+            if (file.name.endsWith('.pdf')) {
+                reports.push({
+                    file: file.name,
+                    name: file.name.replace('.pdf', ''),
+                    download_url: file.download_url,
+                    html_url: file.html_url,
+                    week_start: file.name.match(/VELA_Weekly_Report_(\\d{{4}}-\\d{{2}}-\\d{{2}})/)?.[1] || 'Unknown'
+                });
             }
         }
     } catch (e) {
-        console.error('Reports load failed', e);
+        console.error('GitHub reports load failed', e);
     }
     renderReports();
 }
@@ -145,7 +150,7 @@ onclick="downloadReport('${r.file}')">📥 Download Report</button>
     }).join('');
 }
 function downloadReport(filename) {
-    const url = `../ai_agent/reports/${filename}`;
+    const url = `https://raw.githubusercontent.com/Velithux/Dashboard/main/reports/${filename}`;
     const a = document.createElement('a');
     a.href = url;
     a.download = filename;
