@@ -118,36 +118,21 @@ async function renderReports() {
         grid.innerHTML = '<div class="no-reports">No weekly reports yet. Check back Sundays!</div>';
         return;
     }
-    reports.sort((a,b) => new Date(b.week_end) - new Date(a.week_end));
-    grid.innerHTML = reports.map(r => {
-        const pct = (r.price_change_pct * 100).toFixed(1);
-        const pctClass = pct >= 0 ? 'positive' : 'negative';
-        return `
-            <div class="report-card">
-                <div class="report-date">${r.week_start} → ${r.week_end}</div>
-                <div class="report-metrics">
-                    <div class="metric">
-                        <div class="metric-value">${r.total_decisions}</div>
-                        <div class="metric-label">Decisions</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">${r.burn_count}</div>
-                        <div class="metric-label">Burns</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">${r.total_burned_vlth.toLocaleString()}</div>
-                        <div class="metric-label">VLTH Burned</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">${pct}% <span class="${pctClass}">Δ</span></div>
-                        <div class="metric-label">Price Chg</div>
-                    </div>
+    reports.sort((a,b) => b.name.localeCompare(a.name));  // Newest first by filename
+    grid.innerHTML = reports.map(r => `
+        <div class="report-card">
+            <div class="report-date">${r.name}</div>
+            <div class="report-metrics">
+                <div class="metric">
+                    <div class="metric-value">${r.file}</div>
+                    <div class="metric-label">Filename</div>
                 </div>
-                <div class="commentary">${r.vela_commentary}</div>
-onclick="downloadReport('${r.file}')">📥 Download Report</button>
             </div>
-        `;
-    }).join('');
+            <div class="commentary">VELA Weekly Intelligence PDF</div>
+            <button class="download-btn" onclick="downloadReport('${r.file}')">📥 Download PDF</button>
+            <a href="${r.html_url}" target="_blank" class="download-btn" style="background: var(--blue);">👁 View on GitHub</a>
+        </div>
+    `).join('');
 }
 function downloadReport(filename) {
     const url = `https://raw.githubusercontent.com/Velithux/Dashboard/main/reports/${filename}`;
