@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>$VLTH - Scrooge McDuck AI Dashboard</title>
+    <link rel="icon" href="data:,">
+    <title>$VLTH - Scrooge McDuck AI Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
     <style>
@@ -442,8 +443,8 @@ footer {
                     <img src="VLTH.png" alt="Velith" class="logo-img">
                     <div class="logo-title">$VLTH</div>
                 </div>
-                <a href="https://sepolia.etherscan.io/address/0xBFb61673C292e4732231aA7e31EAF2Cb67F71fFb" target="_blank" class="contract-pill">
-                    0xBFb6...fFb ↗
+                <a href="https://sepolia.etherscan.io/address/0x18334D731FC40df8544729504fD0dC35040490E4" target="_blank" class="contract-pill">
+                    0x1833...90E4 ↗
                 </a>
             </div>
         </header>
@@ -482,13 +483,13 @@ footer {
 
         <!-- Footer -->
         <footer>
-            <p>🛠 Built on Ethereum <a href="https://sepolia.etherscan.io/address/0xBFb61673C292e4732231aA7e31EAF2Cb67F71fFb" target="_blank" class="footer-link">View Contract</a> <span style="color: var(--muted);">· Powered by AI</span></p>
+            <p>🛠 Built on Ethereum <a href="https://sepolia.etherscan.io/address/0x18334D731FC40df8544729504fD0dC35040490E4" target="_blank" class="footer-link">View Contract</a> <span style="color: var(--muted);">· Powered by AI</span></p>
         </footer>
     </div>
 
     <!-- JavaScript unchanged -->
     <script>
-        const CONTRACT_ADDRESS = '0xBFb61673C292e4732231aA7e31EAF2Cb67F71fFb';
+const CONTRACT_ADDRESS = '0x18334D731FC40df8544729504fD0dC35040490E4';
         const ABI = [{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiExecuteBurn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"newPrice","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiProposePrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"activate","type":"bool"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiToggleYield","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getAIDecision","outputs":[{"components":[{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"string","name":"actionType","type":"string"},{"internalType":"string","name":"reason","type":"string"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"internalType":"struct TokenPicsou.AIDecision","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAIDecisionCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLastAIActionTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTokenPriceUSD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTreasuryFeeBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"burnThreshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"circulatingSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalBurned","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
         const SEPOLIA_RPC = 'https://ethereum-sepolia-rpc.publicnode.com';
 
