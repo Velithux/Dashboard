@@ -1,6 +1,6 @@
 flask
 flask-cors
-mistralai
 requests
 python-dotenv
 loguru
+mistralai==1.0.1
