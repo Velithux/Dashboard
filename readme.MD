@@ -105,7 +105,7 @@ Velith was built with security as the top priority:
 
 Track everything in real time — VELA's decisions, token price, circulating supply, total burned, market predictions, and weekly reports.
 
-🌐 **[velithai.vercel.app/](velithai.vercel.app/)**
+🌐 **[velithai.vercel.app](velithai.vercel.app)**
 
 ---
 
