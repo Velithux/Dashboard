@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -785,31 +785,50 @@ async function loadKnowledgeBase() {
 
 function findAnswer(question, kb) {
   question = question.toLowerCase();
+  console.log('findAnswer called with question:', question, 'kb loaded:', !!kb);
   let response = '';
 
+  const q = question.toLowerCase();
+  console.log('Checking keywords in:', q);
+
+  // Greetings first
+  if (q.includes('hello') || q.includes('hi')) {
+    console.log('MATCH: greeting');
+    return 'Hello! I am VELA, the autonomous AI governing Velith ($VLTH). How can I help you today? — VELA';
+  }
+
   // Project facts
-  const facts = kb.project_facts || {};
-  if (question.includes('velith') || question.includes('what is') || question.includes('token')) {
-    response = `Velith ($VLTH) is ${facts.token_name}. Contract: ${facts.contract_address}. Learn more: ${facts.whitepaper_url} — VELA`;
-  } else if (question.includes('supply') || question.includes('total supply')) {
-    response = `Total supply: ${facts.total_supply} VLTH. Distribution: ${Object.entries(facts.distribution || {}).map(([k,v]) => `${k}: ${v}`).join(', ')}. — VELA`;
-  } else if (question.includes('fee') || question.includes('fees')) {
-    response = `Fee rate: ${facts.fee_rate}. ${facts.burn_mechanism} — VELA`;
-  } else if (question.includes('contract') || question.includes('address')) {
-    response = `Contract address: ${facts.contract_address}. Gnosis Safe: ${facts.gnosis_safe}. Dashboard: ${facts.dashboard_url} — VELA`;
-  } else if (question.includes('whitepaper')) {
+  const facts = kb?.project_facts || {};
+  if (q.includes('velith') || q.includes('what is') || q.includes('token')) {
+    console.log('MATCH: velith/token');
+    response = facts.token_name ? `Velith ($VLTH) is ${facts.token_name}. Contract: ${facts.contract_address || '0x18334D731FC40df8544729504fD0dC35040490E4'}. Learn more: ${facts.whitepaper_url || 'https://github.com/Velithux/Dashboard/blob/main/WhitePaper/VELITH_WHITEPAPER.md'} — VELA` : 'Velith ($VLTH) is the first AI-governed crypto token. — VELA';
+  } else if (q.includes('supply')) {
+    console.log('MATCH: supply');
+    response = facts.total_supply ? `Total supply: ${facts.total_supply} VLTH. — VELA` : 'Total supply: 1B VLTH. — VELA';
+  } else if (q.includes('fee') || q.includes('fees')) {
+    console.log('MATCH: fee');
+    response = facts.fee_rate ? `Fee rate: ${facts.fee_rate}. ${facts.burn_mechanism || 'Burn mechanism active.'} — VELA` : 'Treasury fees fund burns. — VELA';
+  } else if (q.includes('contract') || q.includes('address')) {
+    console.log('MATCH: contract');
+    response = `Contract: ${facts.contract_address || '0x18334D731FC40df8544729504fD0dC35040490E4'} (Sepolia). — VELA`;
+  } else if (q.includes('vela')) {
+    console.log('MATCH: vela');
+    response = 'I am VELA, the neural AI that governs $VLTH autonomously. — VELA';
+  }
     response = `Whitepaper: ${facts.whitepaper_url} — VELA`;
   }
 
   // Live data
-  const live = kb.live_onchain_data || {};
-  if (question.includes('price')) {
-    response = `Current price: $${live.current_price_usd}. — VELA`;
-  } else if (question.includes('circulating') || question.includes('supply circulating')) {
+  const live = kb?.live_onchain_data || {};
+  if (q.includes('price')) {
+    console.log('MATCH: price');
+    response = live.current_price_usd ? `Current price: $${live.current_price_usd}. — VELA` : 'Price fetched from Chainlink oracle. Check dashboard stats. — VELA';
+  }
     response = `Circulating supply: ${live.circulating_supply} VLTH. — VELA`;
-  } else if (question.includes('burn') || question.includes('burned')) {
-    response = `Total burned: ${live.total_burned} VLTH. Treasury fee balance: ${live.treasury_fee_balance} VLTH. — VELA`;
-  } else if (question.includes('decision') || question.includes('ai decision') || question.includes('last decision')) {
+  } else if (q.includes('burn') || q.includes('burned')) {
+    console.log('MATCH: burn');
+    response = live.total_burned ? `Total burned: ${live.total_burned} VLTH. — VELA` : 'Burn mechanism active via AI decisions. — VELA';
+  }
     const last5 = live.last_5_decisions || [];
     response = `AI decision count: ${live.ai_decision_count}. Last 5 decisions:\n${last5.slice(0,3).map(d => `${d.action}: ${d.reason.substring(0,50)}...`).join('\n')}\n— VELA`;
   }
@@ -828,6 +847,7 @@ function findAnswer(question, kb) {
     response = `Last report: ${weekly.last_report_date || 'N/A'}. Weekly burned: ${weekly.total_burned_week || 0}. Decisions: ${weekly.decisions_made_week || 0}. — VELA`;
   }
 
+  console.log('Final response:', response || 'no match');
   return response || "I don't have that information yet. Check the whitepaper for more details. — VELA";
 }
 
