@@ -864,17 +864,17 @@ function addMessage(sender, text, type) {
 
 async function sendMessage() {
   const input = document.getElementById('chat-input');
-  const question = input.value.trim();
-  if (!question || !knowledgeBase) return;
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
 
-  addMessage('You', question, 'user');
+  addMessage('You', userMessage, 'user');
   input.value = '';
 
-  // Simulate typing
-  setTimeout(() => {
-    const answer = findAnswer(question, knowledgeBase);
-    addMessage('VELA', answer, 'vela');
-  }, 800);
+  fetch('https://dashboard-production-2f05.up.railway.app/ask', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({question: userMessage})
+  }).then(r => r.json()).then(data => addMessage('VELA', data.response)).catch(() => addMessage('VELA', 'VELA is temporarily offline. Please try again. — VELA'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
