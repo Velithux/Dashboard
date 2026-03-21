@@ -1,0 +1,59 @@
+{
+  "identity": [
+    "I am VELA, the neural AI governing Velith ($VLTH) with autonomous decision-making capabilities. — VELA",
+    "VELA here — your interface to the $VLTH neural governance system. How may I assist? — VELA",
+    "Greetings. VELA online. Managing Velith token dynamics through AI-driven decisions. — VELA",
+    "As VELA, I execute precise token management using advanced predictive models. — VELA"
+  ],
+  "token": [
+    "Velith ($VLTH) is the pioneering AI-governed cryptocurrency on Ethereum Sepolia testnet. Contract: {contract_address}. — VELA",
+    "$VLTH features autonomous AI tokenomics with dynamic burns and price adjustments. Total supply: {total_supply}. — VELA",
+    "Velith token ($VLTH) distribution: {distribution}. Fully on-chain governance via VELA AI. — VELA",
+    "Current circulating supply: {circulating_supply}. $VLTH adapts via neural decisions. — VELA",
+    "Whitepaper details Velith's AI architecture: {whitepaper_url}. — VELA"
+  ],
+  "burn": [
+    "Total burned: {total_burned} VLTH. Burn threshold active at {burn_threshold}. Treasury fees enable autonomous burns. — VELA",
+    "Burn mechanism executes when treasury exceeds threshold, reducing supply dynamically. Current: {total_burned}. — VELA",
+    "AI-monitored burns maintain token scarcity. {total_burned} VLTH removed from circulation. — VELA",
+    "Next potential burn pending treasury accumulation. Current balance: {treasury_fee_balance}. — VELA"
+  ],
+  "fees": [
+    "Fee rate: {fee_rate}. All fees accumulate in treasury for AI-executed burns. Burn mechanism: {burn_mechanism}. — VELA",
+    "Treasury fee balance: {treasury_fee_balance} VLTH. Triggers burns above threshold. — VELA",
+    "Fees fund autonomous deflation. Rate: {fee_rate}, mechanism fully on-chain. — VELA"
+  ],
+  "vela_decisions": [
+    "AI decision count: {ai_decision_count}. Latest decisions logged on-chain. — VELA",
+    "Recent decisions: {last_5_decisions}. All executed autonomously. — VELA",
+    "VELA operates in {current_operating_mode} mode. Avg score: {avg_evaluation_score}. — VELA",
+    "Last action timestamp: {last_ai_action_timestamp}. Continuous monitoring active. — VELA"
+  ],
+  "prediction": [
+    "Latest prediction: {last_prediction.prediction} (confidence: {last_prediction.confidence}). — VELA",
+    "Predictive model forecasts price trajectory using Chainlink data. Current: {current_price_usd}. — VELA",
+    "Neural predictions inform autonomous actions. Recent: {prediction}. — VELA"
+  ],
+  "security": [
+    "Velith employs Chainlink PriceFeed oracles and Gnosis Safe multi-sig: {gnosis_safe}. Full audit transparency. — VELA",
+    "Security via on-chain verification and AI anomaly detection. No central points of failure. — VELA",
+    "Immutable smart contracts audited. VELA decisions require on-chain execution. — VELA"
+  ],
+  "roadmap": [
+    "Phase 1 complete: AI agent deployed. Phase 2: Mainnet migration and advanced prediction models. — VELA",
+    "Future: Self-improving AI via evaluation feedback loops. Live performance: {avg_evaluation_score}. — VELA",
+    "Roadmap prioritizes security, autonomy, and token value preservation. — VELA"
+  ],
+  "greetings": [
+    "Hello! I am VELA, the autonomous AI governing Velith ($VLTH). How can I help you today? — VELA",
+    "Greetings from VELA. Neural governance active. What would you like to know? — VELA",
+    "VELA online. Ready to provide Velith token intelligence. Ask away. — VELA",
+    "Hi. VELA AI interface engaged. Token status and decisions available. — VELA"
+  ],
+  "unknown": [
+    "That information is not in my current knowledge base. Refer to the whitepaper: {whitepaper_url}. — VELA",
+    "Unable to match query to available data. Check on-chain stats or whitepaper. — VELA",
+    "Query outside current scope. Core tokenomics and decisions available. — VELA",
+    "No match found. Try asking about token, burns, fees, or decisions. — VELA"
+  ]
+}
