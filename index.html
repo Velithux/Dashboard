@@ -814,8 +814,9 @@ function findAnswer(question, kb) {
   } else if (q.includes('vela')) {
     console.log('MATCH: vela');
     response = 'I am VELA, the neural AI that governs $VLTH autonomously. — VELA';
-  }
-    response = `Whitepaper: ${facts.whitepaper_url} — VELA`;
+  } else if (q.includes('whitepaper')) {
+    console.log('MATCH: whitepaper');
+    response = `Whitepaper: ${facts.whitepaper_url || 'https://github.com/Velithux/Dashboard/blob/main/WhitePaper/VELITH_WHITEPAPER.md'} — VELA`;
   }
 
   // Live data
@@ -823,8 +824,9 @@ function findAnswer(question, kb) {
   if (q.includes('price')) {
     console.log('MATCH: price');
     response = live.current_price_usd ? `Current price: $${live.current_price_usd}. — VELA` : 'Price fetched from Chainlink oracle. Check dashboard stats. — VELA';
-  }
-    response = `Circulating supply: ${live.circulating_supply} VLTH. — VELA`;
+  } else if (q.includes('circulating') || q.includes('supply circulating')) {
+    console.log('MATCH: circulating supply');
+    response = live.circulating_supply ? `Circulating supply: ${live.circulating_supply} VLTH. — VELA` : 'Circulating supply tracked on-chain. — VELA';
   } else if (q.includes('burn') || q.includes('burned')) {
     console.log('MATCH: burn');
     response = live.total_burned ? `Total burned: ${live.total_burned} VLTH. — VELA` : 'Burn mechanism active via AI decisions. — VELA';
