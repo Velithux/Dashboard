@@ -728,34 +728,26 @@ footer {
 const CONTRACT_ADDRESS = '0x18334D731FC40df8544729504fD0dC35040490E4';
 const ABI = [{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiExecuteBurn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"newPrice","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiProposePrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"activate","type":"bool"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiToggleYield","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getAIDecision","outputs":[{"components":[{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"string","name":"actionType","type":"string"},{"internalType":"string","name":"reason","type":"string"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"internalType":"struct TokenPicsou.AIDecision","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAIDecisionCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLastAIActionTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTokenPriceUSD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTreasuryFeeBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"burnThreshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"circulatingSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalBurned","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
 const SEPOLIA_RPC = 'https://ethereum-sepolia-rpc.publicnode.com';
-const KB_URL = 'https://raw.githubusercontent.com/Velithux/Dashboard/main/ai_agent/data/knowledge_base.json';
 
-let provider, contract, knowledgeBase = null;
 
-// VELA Chat functions - FIXED findAnswer()
+let provider, contract;
+
+// VELA Chat functions
 let chatMessages = [];
 
 function togglePopup() {
   const popup = document.getElementById('vela-popup');
   const isOpen = popup.style.display === 'flex';
   popup.style.display = isOpen ? 'none' : 'flex';
-  if (!isOpen && !knowledgeBase) loadKnowledgeBase();
+
+
   if (!isOpen) {
     document.getElementById('chat-messages').innerHTML = '';
     document.getElementById('chat-suggestions').style.display = 'flex';
   }
 }
 
-async function loadKnowledgeBase() {
-  try {
-    const response = await fetch(KB_URL);
-    knowledgeBase = await response.json();
-    console.log('VELA KB loaded:', Object.keys(knowledgeBase));
-  } catch (error) {
-    console.error('KB load failed:', error);
-    knowledgeBase = null;
-  }
-}
+
 
 function findAnswer(question) { // Simplified - fixed structure
   const q = question.toLowerCase();
@@ -823,20 +815,28 @@ async function sendMessage() {
 
   addMessage('You', userMessage, 'user');
   input.value = '';
+  const sendBtn = document.getElementById('chat-send');
+  input.disabled = true;
+  sendBtn.disabled = true;
+  sendBtn.textContent = '⏳';
 
-  // Try production backend first
   try {
     const response = await fetch('https://dashboard-production-2f05.up.railway.app/ask', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({question: userMessage})
     });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
-    addMessage('VELA', data.response || 'Processing...');
+    addMessage('VELA', data.response || 'No response from server.');
   } catch (e) {
-    // Fallback to local logic
-    const fallback = findAnswer(userMessage);
-    addMessage('VELA', fallback);
+    console.error('Railway error:', e);
+    addMessage('VELA', 'Sorry, server is busy. Try again soon! — VELA');
+  } finally {
+    input.disabled = false;
+    sendBtn.disabled = false;
+    sendBtn.textContent = '→';
+    input.focus();
   }
 }
 
