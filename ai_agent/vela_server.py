@@ -8,13 +8,14 @@ app = Flask(__name__)
 CORS(app)
 
 # Load JSON files
-RESPONSES_PATH = 'responses.json'
-KNOWLEDGE_PATH = 'data/knowledge_base.json'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+responses_path = os.path.join(BASE_DIR, 'responses.json')
+kb_path = os.path.join(BASE_DIR, 'data', 'knowledge_base.json')
 
 try:
-    with open(RESPONSES_PATH, 'r') as f:
+    with open(responses_path, 'r') as f:
         responses = json.load(f)
-    with open(KNOWLEDGE_PATH, 'r') as f:
+    with open(kb_path, 'r') as f:
         knowledge_base = json.load(f)
     print('Loaded responses.json and knowledge_base.json')
 except FileNotFoundError as e:
