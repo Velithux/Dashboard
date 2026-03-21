@@ -112,8 +112,8 @@ Track everything in real time — VELA's decisions, token price, circulating sup
 ## Documentation
 
 - 📄 **[Whitepaper](https://github.com/Velithux/Dashboard/blob/main/WhitePaper/VELITH_WHITEPAPER.md)** — Vision, architecture, Proof of AI, roadmap
-- 🔴 **Red Book** — Behavioral proof & simulation document *(coming soon)*
-- 🟡 **Yellow Paper** — Formal technical specification *(forthcoming)*
+- 🔴 **[RedPaper](https://github.com/Velithux/Dashboard/blob/main/RedPaper/RedPaper.md)** — Behavioral proof & simulation document
+- 🟡 **YellowPaper** — Formal technical specification *(forthcoming)*
 
 ---
 
