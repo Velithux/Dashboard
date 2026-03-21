@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:,">
-    <title>$VLTH - Scrooge McDuck AI Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>$VLTH - Velith AI Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&amp;family=DM+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
     <style>
 :root {
@@ -63,7 +63,7 @@ body::before {
   padding: 0 24px;
 }
 
-/* Sticky Header */
+/* Header */
 .header {
   position: sticky;
   top: 0;
@@ -101,6 +101,16 @@ body::before {
   animation: rotateRing 3s linear infinite;
 }
 
+@keyframes goldPulse {
+  from { box-shadow: 0 0 0 2px var(--gold-glow); }
+  to { box-shadow: 0 0 0 6px var(--gold-glow); }
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .logo-title {
   font-family: 'Syne', sans-serif;
   font-weight: 700;
@@ -133,7 +143,216 @@ body::before {
   box-shadow: 0 0 20px var(--blue-glow);
 }
 
-/* Hero */
+/* VELA Chat */
+#vela-chat-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--gold), #FFD700);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--black);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow), 0 0 0 0 var(--gold-glow);
+  transition: var(--transition);
+  z-index: 1000;
+  font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+  transform: translateX(0);
+}
+
+#vela-chat-btn:hover {
+  box-shadow: var(--shadow), 0 0 0 8px var(--gold-glow);
+  transform: translateY(-2px) scale(1.05);
+}
+
+#vela-chat-btn .robot-icon {
+  font-size: 1.5rem;
+}
+
+#vela-popup {
+  position: fixed;
+  bottom: 104px;
+  right: 24px;
+  width: 380px;
+  height: 500px;
+  background: var(--bg2);
+  border: 1px solid var(--gold-glow);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+  backdrop-filter: blur(20px);
+}
+
+#vela-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--gold-glow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#vela-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  background: linear-gradient(135deg, var(--gold), #FFD700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#vela-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--bg);
+  border-radius: 50%;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  transition: var(--transition);
+}
+
+#vela-close:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 16px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message {
+  display: flex;
+  max-width: 90%;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.message-vela {
+  align-self: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--gold-glow);
+}
+
+.message-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--gold), #FFD700);
+  color: var(--black);
+}
+
+#chat-input-container {
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--gold-glow);
+  display: flex;
+  gap: 12px;
+  align-items: end;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--gold-glow);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+}
+
+#chat-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+#chat-send {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: var(--gold);
+  border-radius: 50%;
+  color: var(--black);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+#chat-send:hover {
+  background: #FFD700;
+  transform: scale(1.05);
+}
+
+#chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 24px 16px;
+}
+
+.suggestion-chip {
+  padding: 8px 16px;
+  background: var(--bg);
+  border: 1px solid var(--gold-glow);
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'DM Mono', monospace;
+}
+
+.suggestion-chip:hover {
+  background: var(--gold-glow);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Scrollbars */
+#chat-messages::-webkit-scrollbar,
+.decisions-feed::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background: var(--gold-glow);
+  border-radius: 3px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* Rest of existing styles... */
 .hero {
   text-align: center;
   padding: 120px 0 80px;
@@ -190,7 +409,6 @@ body::before {
   50% { opacity: 0.5; transform: scale(1.2); }
 }
 
-/* Stats */
 .stats-section {
   padding: 80px 0;
   position: relative;
@@ -269,7 +487,6 @@ body::before {
   text-transform: uppercase;
 }
 
-/* Decisions */
 .decision-section {
   padding: 80px 0 120px;
 }
@@ -401,7 +618,6 @@ body::before {
   margin: 64px 0;
 }
 
-/* Footer */
 footer {
   background: var(--blue);
   padding: 48px 0 32px;
@@ -419,7 +635,6 @@ footer {
   text-decoration: underline;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .header-inner { flex-direction: column; gap: 16px; }
   .stats-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -427,6 +642,19 @@ footer {
   .stat-card { padding: 28px 20px; }
   .meta-info { flex-direction: column; gap: 8px; }
   .decisions-feed { max-height: 400px; }
+  #vela-chat-btn { 
+    bottom: 20px; 
+    right: 20px; 
+    width: 56px; 
+    height: 56px; 
+    font-size: 0.7rem; 
+  }
+  #vela-popup { 
+    width: calc(100vw - 40px); 
+    height: 70vh; 
+    right: 20px; 
+    bottom: 76px; 
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -457,7 +685,6 @@ footer {
                     📄 Whitepaper
                 </a>
             </div>
-
         </header>
 
         <!-- Hero -->
@@ -494,121 +721,264 @@ footer {
 
         <!-- Footer -->
         <footer>
-            <p>🛠 Built on Ethereum <a href="https://sepolia.etherscan.io/address/0x18334D731FC40df8544729504fD0dC35040490E4" target="_blank" class="footer-link">View Contract</a> <span style="color: var(--muted);">· Powered by AI</span></p>
+            <p>🛠 Built on Ethereum <a href="https://sepolia.etherscan.io/address/0x18334D731FC40df8544729504fD0dC35040490E4" target="_blank" class="footer-link">View Contract</a> <span style="color: var(--muted);">· Powered by VELA AI</span></p>
         </footer>
     </div>
 
-    <!-- JavaScript unchanged -->
+    <!-- VELA Chat Popup -->
+    <button id="vela-chat-btn" title="Ask VELA">
+        <div class="robot-icon">🤖</div>
+        Ask VELA
+    </button>
+    <div id="vela-popup">
+        <div id="vela-header">
+            <div id="vela-title">VELA AI</div>
+            <button id="vela-close" title="Close">&times;</button>
+        </div>
+        <div id="chat-suggestions">
+            <div class="suggestion-chip" data-question="What is Velith?">What is Velith?</div>
+            <div class="suggestion-chip" data-question="How does VELA decide?">How does VELA decide?</div>
+            <div class="suggestion-chip" data-question="Total supply?">Total supply?</div>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Ask VELA anything about $VLTH..." maxlength="500">
+            <button id="chat-send">→</button>
+        </div>
+    </div>
+
     <script>
 const CONTRACT_ADDRESS = '0x18334D731FC40df8544729504fD0dC35040490E4';
-        const ABI = [{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiExecuteBurn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"newPrice","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiProposePrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"activate","type":"bool"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiToggleYield","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getAIDecision","outputs":[{"components":[{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"string","name":"actionType","type":"string"},{"internalType":"string","name":"reason","type":"string"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"internalType":"struct TokenPicsou.AIDecision","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAIDecisionCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLastAIActionTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTokenPriceUSD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTreasuryFeeBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"burnThreshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"circulatingSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalBurned","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
-        const SEPOLIA_RPC = 'https://ethereum-sepolia-rpc.publicnode.com';
+const ABI = [{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiExecuteBurn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"newPrice","type":"uint256"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiProposePrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"activate","type":"bool"},{"internalType":"string","name":"reason","type":"string"}],"name":"aiToggleYield","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getAIDecision","outputs":[{"components":[{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"string","name":"actionType","type":"string"},{"internalType":"string","name":"reason","type":"string"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"bool","name":"executed","type":"bool"}],"internalType":"struct TokenPicsou.AIDecision","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAIDecisionCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLastAIActionTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTokenPriceUSD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTreasuryFeeBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"burnThreshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"circulatingSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTotalBurned","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
+const SEPOLIA_RPC = 'https://ethereum-sepolia-rpc.publicnode.com';
+const KB_URL = 'https://raw.githubusercontent.com/Velithux/Dashboard/main/ai_agent/data/knowledge_base.json';
 
-        let provider, contract;
+let provider, contract, knowledgeBase = null;
 
-        async function init() {
-            try {
-                provider = new ethers.JsonRpcProvider(SEPOLIA_RPC);
-                contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
-                await updateDashboard();
-                setInterval(updateDashboard, 30000);
-            } catch (error) {
-                console.error('Init error:', error);
-                showError('Neural connection failed: ' + error.message);
-            }
-        }
+// VELA Chat
+let chatMessages = [];
 
-        async function updateDashboard() {
-            try {
-                const [price, circ, burned, count] = await Promise.all([
-                    contract.getTokenPriceUSD(),
-                    contract.circulatingSupply(),
-                    contract.getTotalBurned(),
-                    contract.getAIDecisionCount()
-                ]);
+function togglePopup() {
+  const popup = document.getElementById('vela-popup');
+  const isOpen = popup.style.display === 'flex';
+  popup.style.display = isOpen ? 'none' : 'flex';
+  if (!isOpen && !knowledgeBase) {
+    loadKnowledgeBase();
+  }
+  if (!isOpen) {
+    document.getElementById('chat-messages').innerHTML = '';
+    document.getElementById('chat-suggestions').style.display = 'flex';
+  }
+}
 
-                updateStats(price, circ, burned);
-                document.getElementById('lastUpdate').textContent = `Neural sync: ${new Date().toLocaleString()}`;
-                await updateDecisions(count);
-            } catch (error) {
-                console.error('Update error:', error);
-                showError('Sync failed: ' + error.message);
-            }
-        }
+async function loadKnowledgeBase() {
+  try {
+    const response = await fetch(KB_URL);
+    knowledgeBase = await response.json();
+    console.log('VELA KB loaded');
+  } catch (error) {
+    console.error('KB load failed:', error);
+    knowledgeBase = { error: 'Knowledge base unavailable' };
+    addMessage('VELA', 'Knowledge base temporarily unavailable. Try again soon. — VELA', 'vela');
+  }
+}
 
-        function updateStats(price, circ, burned) {
-            const priceUSD = parseFloat(ethers.formatUnits(price, 18)).toFixed(6);
-            const circVLTH = parseFloat(ethers.formatUnits(circ, 18)).toLocaleString('en-US');
-            const burnedVLTH = parseFloat(ethers.formatUnits(burned, 18)).toLocaleString('en-US');
+function findAnswer(question, kb) {
+  question = question.toLowerCase();
+  let response = '';
 
-            document.getElementById('statsGrid').innerHTML = `
-                <div class="stat-card">
-                    <div class="stat-number">$${priceUSD}</div>
-                    <div class="stat-title">Neural Price</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">${circVLTH}</div>
-                    <div class="stat-title">Circ Supply</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">${burnedVLTH}</div>
-                    <div class="stat-title">Burned Tokens</div>
-                </div>
-            `;
-        }
+  // Project facts
+  const facts = kb.project_facts || {};
+  if (question.includes('velith') || question.includes('what is') || question.includes('token')) {
+    response = `Velith ($VLTH) is ${facts.token_name}. Contract: ${facts.contract_address}. Learn more: ${facts.whitepaper_url} — VELA`;
+  } else if (question.includes('supply') || question.includes('total supply')) {
+    response = `Total supply: ${facts.total_supply} VLTH. Distribution: ${Object.entries(facts.distribution || {}).map(([k,v]) => `${k}: ${v}`).join(', ')}. — VELA`;
+  } else if (question.includes('fee') || question.includes('fees')) {
+    response = `Fee rate: ${facts.fee_rate}. ${facts.burn_mechanism} — VELA`;
+  } else if (question.includes('contract') || question.includes('address')) {
+    response = `Contract address: ${facts.contract_address}. Gnosis Safe: ${facts.gnosis_safe}. Dashboard: ${facts.dashboard_url} — VELA`;
+  } else if (question.includes('whitepaper')) {
+    response = `Whitepaper: ${facts.whitepaper_url} — VELA`;
+  }
 
-        async function updateDecisions(count) {
-            const list = document.getElementById('decisionsList');
-            list.innerHTML = '<div class="loading-skeleton"><div class="spinner"></div>Loading neural decisions...</div>';
+  // Live data
+  const live = kb.live_onchain_data || {};
+  if (question.includes('price')) {
+    response = `Current price: $${live.current_price_usd}. — VELA`;
+  } else if (question.includes('circulating') || question.includes('supply circulating')) {
+    response = `Circulating supply: ${live.circulating_supply} VLTH. — VELA`;
+  } else if (question.includes('burn') || question.includes('burned')) {
+    response = `Total burned: ${live.total_burned} VLTH. Treasury fee balance: ${live.treasury_fee_balance} VLTH. — VELA`;
+  } else if (question.includes('decision') || question.includes('ai decision') || question.includes('last decision')) {
+    const last5 = live.last_5_decisions || [];
+    response = `AI decision count: ${live.ai_decision_count}. Last 5 decisions:\n${last5.slice(0,3).map(d => `${d.action}: ${d.reason.substring(0,50)}...`).join('\n')}\n— VELA`;
+  }
 
-            if (Number(count) === 0) {
-                list.innerHTML = '<div class="loading-skeleton">Neural network initializing...</div>';
-                return;
-            }
+  // Performance
+  const perf = kb.vela_performance || {};
+  if (question.includes('performance') || question.includes('score') || question.includes('avg score')) {
+    response = `Total decisions: ${perf.total_decisions_made}. Burn count: ${perf.burn_count}. Avg evaluation score: ${perf.avg_evaluation_score}. Mode: ${perf.current_operating_mode}. — VELA`;
+  } else if (question.includes('prediction') || question.includes('last prediction')) {
+    response = `Last prediction: ${perf.last_prediction.prediction} (confidence: ${perf.last_prediction.confidence}). — VELA`;
+  }
 
-            try {
-                const decisions = [];
-                for (let i = Number(count) - 1; i >= 0 && decisions.length < 20; i--) {
-                    const dec = await contract.getAIDecision(i);
-                    if (dec.executed) {
-                        decisions.push({
-                            action: dec.actionType,
-                            reason: dec.reason,
-                            value: ethers.formatUnits(dec.value, 18),
-                            timestamp: new Date(Number(dec.timestamp) * 1000).toLocaleString()
-                        });
-                    }
-                }
+  // Weekly
+  const weekly = kb.weekly_report_summary || {};
+  if (question.includes('weekly') || question.includes('report')) {
+    response = `Last report: ${weekly.last_report_date || 'N/A'}. Weekly burned: ${weekly.total_burned_week || 0}. Decisions: ${weekly.decisions_made_week || 0}. — VELA`;
+  }
 
-                const html = decisions.map(d => {
-                    let badgeClass = 'badge-burn';
-                    if (d.action.includes('PRICE')) badgeClass = 'badge-price';
-                    if (d.action.includes('YIELD')) badgeClass = 'badge-yield';
-                    
-                    return `
-                        <div class="decision-card">
-                            <div class="badge ${badgeClass}">${d.action}</div>
-                            <div class="decision-reason">${d.reason}</div>
-                            <div class="meta-info">
-                                <span class="meta-value">${parseFloat(d.value).toLocaleString()} VLTH</span>
-                                <span>${d.timestamp}</span>
-                            </div>
-                        </div>
-                    `;
-                }).join('') || '<div class="loading-skeleton">No neural decisions executed</div>';
+  return response || "I don't have that information yet. Check the whitepaper for more details. — VELA";
+}
 
-                list.innerHTML = html;
-            } catch (error) {
-                list.innerHTML = `<div class="error-state">Neural feed error: ${error.message}</div>`;
-            }
-        }
+function addMessage(sender, text, type) {
+  chatMessages.push({ sender, text });
+  const messagesEl = document.getElementById('chat-messages');
+  const msgEl = document.createElement('div');
+  msgEl.className = `message ${type}`;
+  msgEl.textContent = text;
+  messagesEl.appendChild(msgEl);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  document.getElementById('chat-suggestions').style.display = 'none';
+}
 
-        function showError(msg) {
-            document.getElementById('statsGrid').innerHTML = `<div class="error-state">${msg}</div>`;
-            document.getElementById('decisionsList').innerHTML = '<div class="error-state">Neural connection disrupted</div>';
-        }
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const question = input.value.trim();
+  if (!question || !knowledgeBase) return;
 
-        window.addEventListener('load', init);
+  addMessage('You', question, 'user');
+  input.value = '';
+
+  // Simulate typing
+  setTimeout(() => {
+    const answer = findAnswer(question, knowledgeBase);
+    addMessage('VELA', answer, 'vela');
+  }, 800);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // VELA Chat events
+  document.getElementById('vela-chat-btn').onclick = togglePopup;
+  document.getElementById('vela-close').onclick = togglePopup;
+  document.getElementById('chat-send').onclick = sendMessage;
+  document.getElementById('chat-input').onkeypress = (e) => {
+    if (e.key === 'Enter') sendMessage();
+  };
+
+  document.querySelectorAll('.suggestion-chip').forEach(chip => {
+    chip.onclick = (e) => {
+      document.getElementById('chat-input').value = e.target.dataset.question;
+      sendMessage();
+    };
+  });
+
+  // Existing dashboard code
+  init();
+});
+
+// Existing dashboard functions unchanged...
+async function init() {
+  try {
+    provider = new ethers.JsonRpcProvider(SEPOLIA_RPC);
+    contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+    await updateDashboard();
+    setInterval(updateDashboard, 30000);
+  } catch (error) {
+    console.error('Init error:', error);
+    showError('Neural connection failed: ' + error.message);
+  }
+}
+
+async function updateDashboard() {
+  try {
+    const [price, circ, burned, count] = await Promise.all([
+      contract.getTokenPriceUSD(),
+      contract.circulatingSupply(),
+      contract.getTotalBurned(),
+      contract.getAIDecisionCount()
+    ]);
+
+    updateStats(price, circ, burned);
+    document.getElementById('lastUpdate').textContent = `Neural sync: ${new Date().toLocaleString()}`;
+    await updateDecisions(count);
+  } catch (error) {
+    console.error('Update error:', error);
+    showError('Sync failed: ' + error.message);
+  }
+}
+
+function updateStats(price, circ, burned) {
+  const priceUSD = parseFloat(ethers.formatUnits(price, 18)).toFixed(6);
+  const circVLTH = parseFloat(ethers.formatUnits(circ, 18)).toLocaleString('en-US');
+  const burnedVLTH = parseFloat(ethers.formatUnits(burned, 18)).toLocaleString('en-US');
+
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-number">$${priceUSD}</div>
+      <div class="stat-title">Neural Price</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">${circVLTH}</div>
+      <div class="stat-title">Circ Supply</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">${burnedVLTH}</div>
+      <div class="stat-title">Burned Tokens</div>
+    </div>
+  `;
+}
+
+async function updateDecisions(count) {
+  const list = document.getElementById('decisionsList');
+  list.innerHTML = '<div class="loading-skeleton"><div class="spinner"></div>Loading neural decisions...</div>';
+
+  if (Number(count) === 0) {
+    list.innerHTML = '<div class="loading-skeleton">Neural network initializing...</div>';
+    return;
+  }
+
+  try {
+    const decisions = [];
+    for (let i = Number(count) - 1; i >= 0 && decisions.length < 20; i--) {
+      const dec = await contract.getAIDecision(i);
+      if (dec.executed) {
+        decisions.push({
+          action: dec.actionType,
+          reason: dec.reason,
+          value: ethers.formatUnits(dec.value, 18),
+          timestamp: new Date(Number(dec.timestamp) * 1000).toLocaleString()
+        });
+      }
+    }
+
+    const html = decisions.map(d => {
+      let badgeClass = 'badge-burn';
+      if (d.action.includes('PRICE')) badgeClass = 'badge-price';
+      if (d.action.includes('YIELD')) badgeClass = 'badge-yield';
+      
+      return `
+        <div class="decision-card">
+          <div class="badge ${badgeClass}">${d.action}</div>
+          <div class="decision-reason">${d.reason}</div>
+          <div class="meta-info">
+            <span class="meta-value">${parseFloat(d.value).toLocaleString()} VLTH</span>
+            <span>${d.timestamp}</span>
+          </div>
+        </div>
+      `;
+    }).join('') || '<div class="loading-skeleton">No neural decisions executed</div>';
+
+    list.innerHTML = html;
+  } catch (error) {
+    list.innerHTML = `<div class="error-state">Neural feed error: ${error.message}</div>`;
+  }
+}
+
+function showError(msg) {
+  document.getElementById('statsGrid').innerHTML = `<div class="error-state">${msg}</div>`;
+  document.getElementById('decisionsList').innerHTML = '<div class="error-state">Neural connection disrupted</div>';
+}
     </script>
 </body>
 </html>
