@@ -245,6 +245,9 @@ body::before {
   border-radius: var(--radius);
   font-size: 0.95rem;
   line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .message-vela {
@@ -449,9 +452,11 @@ body::before {
   color: var(--white);
   margin-bottom: 12px;
   line-height: 1.1;
-  word-break: break-all;
-  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: anywhere;
   hyphens: auto;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .stat-title {
@@ -551,6 +556,11 @@ body::before {
   line-height: 1.6;
   color: var(--white);
   margin-bottom: 24px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  max-width: 100%;
+  hyphens: auto;
 }
 
 .meta-info {
