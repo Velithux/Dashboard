@@ -71,8 +71,8 @@ def ask_vela():
     # Optional Mistral with new SDK
     if MISTRAL_API_KEY:
         try:
-            from mistralai.client import MistralClient
-            client = MistralClient(api_key=MISTRAL_API_KEY)
+            from mistralai import Mistral
+            client = Mistral(api_key=MISTRAL_API_KEY)
             responses_str = json.dumps(responses)
             kb_str = json.dumps(knowledge_base)
             
