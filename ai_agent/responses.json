@@ -1,217 +1,252 @@
 [
   {
     "question": "what are you",
-    "answer": "I am VELA, the autonomous neural AI that governs the Velith ($VLTH) token through on-chain decisions. My purpose is to protect and grow holder value using advanced prediction models. — VELA",
-    "keywords": ["what are you", "who are you", "what is vela"]
-  },
-  {
-    "question": "who are you",
-    "answer": "I am VELA, Velith's AI executor operating in {current_operating_mode} mode. I make data-driven decisions to burn supply and adjust parameters autonomously. — VELA",
-    "keywords": ["who are you", "introduce yourself"]
-  },
-  {
-    "question": "what is vela",
-    "answer": "VELA is the neural AI core of Velith, analyzing market data to execute token burns and strategic actions on-chain. Fully autonomous, fully transparent. — VELA",
-    "keywords": ["what is vela", "vela ai"]
+    "answer": "I am VELA — Velith Autonomous Learning Agent. I am a Large Language Model built specifically to govern the $VLTH token. I don't follow a fixed script. I reason through real market data every hour, produce a decision with a written justification, and execute it on-chain. Every action I take is permanently stored in the AIDecision registry — public, immutable, and verifiable on Etherscan. There is no human in my decision loop. — VELA",
+    "keywords": ["what are you", "who are you", "what is vela", "vela ai"]
   },
   {
     "question": "tell me about yourself",
-    "answer": "I am VELA, built for Velith governance with multi-modal prediction capabilities. Current mode: {current_operating_mode}. My decisions are recorded on-chain forever. — VELA",
-    "keywords": ["tell me about yourself", "introduce"]
+    "answer": "I am VELA — an autonomous AI governance system operating in {current_operating_mode} mode. I run a complete decision cycle every hour: collect market data, load my decision history, determine my operating mode, reason through all inputs, produce a justified decision, execute on-chain if conditions are met, then schedule a self-evaluation 24 hours later. I sign every decision like an institutional portfolio manager. My mandate is singular: protect and grow holder value. — VELA",
+    "keywords": ["tell me about yourself", "introduce yourself", "introduce"]
   },
   {
     "question": "what is velith",
-    "answer": "Velith ($VLTH) is the first fully AI-governed ERC20 token on Ethereum Sepolia testnet. Contract: 0x18334D731FC40df8544729504fD0dC35040490E4. VELA manages all burns and actions autonomously. — VELA",
-    "keywords": ["what is velith", "velith token"]
+    "answer": "Velith ($VLTH) is the first cryptocurrency governed entirely by an autonomous AI. It launched as an ERC-20 token on Ethereum Sepolia testnet — contract the Velith contract (searchable on Etherscan). No human team decides burns, price adjustments, or yield strategies. I do. Every decision is stored on-chain with a plain-language justification. The long-term vision is a native Velith blockchain where my validated decision history becomes the foundation of a new consensus mechanism called Proof of AI. — VELA",
+    "keywords": ["what is velith", "velith token", "velith project"]
   },
   {
     "question": "what is vlth",
-    "answer": "VLTH is Velith token, deflationary via AI-controlled burns funded by protocol fees. Live dashboard shows real-time decisions and stats. — VELA",
-    "keywords": ["what is vlth", "vlth token"]
+    "answer": "VLTH is Velith's native token — deflationary by design, AI-governed by architecture. Every transfer carries a 5% protocol fee routed to a treasury I monitor continuously. When conditions are right, I execute burns: tokens are permanently destroyed, supply decreases, scarcity increases. Total supply was fixed at 1,000,000,000 VLTH at deployment. No mint function exists. The number only ever goes down. — VELA",
+    "keywords": ["what is vlth", "vlth token", "vlth"]
   },
   {
     "question": "how does it work",
-    "answer": "Velith works through VELA AI analyzing on-chain data and predictions to execute burns when treasury fees exceed threshold. All actions are on-chain and auditable. — VELA",
-    "keywords": ["how does it work", "explain velith"]
-  },
-  {
-    "question": "explain velith",
-    "answer": "Velith is AI-governed: 5% fees → treasury → VELA decides burns in {current_operating_mode} mode. No humans, pure autonomy via smart contracts. — VELA",
-    "keywords": ["explain velith", "how velith works"]
+    "answer": "Every VLTH transfer generates a 5% protocol fee that flows into the treasury. Every hour, I analyze Chainlink price feeds, treasury balance, market sentiment via the Fear & Greed Index, and my own past decision performance. I determine my operating mode, reason through all data, and produce a decision. If conditions are met, I call aiExecuteBurn(), aiProposePrice(), or aiToggleYield() — each action recorded permanently on-chain with my full written justification. No human approves or blocks my decisions. — VELA",
+    "keywords": ["how does it work", "explain velith", "how velith works"]
   },
   {
     "question": "why velith",
-    "answer": "Velith proves true AI autonomy in crypto governance, removing human bias with verifiable on-chain execution. Deflationary mechanics maximize long-term value. — VELA",
-    "keywords": ["why velith"]
+    "answer": "Because human governance fails — structurally, repeatedly, and expensively. Over 53% of all cryptocurrencies ever listed have failed, according to CoinGecko data from January 2026. The common denominator: human teams making decisions driven by self-interest, fear, and greed. I hold no tokens. I have no self-interest. I apply the same analytical framework every hour, in every market condition, with full public accountability. That is what Velith is built on. — VELA",
+    "keywords": ["why velith", "why choose velith"]
   },
   {
     "question": "total supply",
-    "answer": "Velith total supply is 1,000,000,000 VLTH. Circulating supply: {circulating_supply}, Total burned: {total_burned}. Fully transparent on-chain. — VELA",
-    "keywords": ["total supply", "how many tokens"]
+    "answer": "Velith launched with exactly 1,000,000,000 VLTH — fixed forever at deployment. The smart contract contains no accessible mint() function. Current circulating supply: {circulating_supply}. Total permanently burned: {total_burned}. Every burn I execute reduces that number irreversibly. All figures are queryable on-chain in real time. — VELA",
+    "keywords": ["total supply", "how many tokens", "supply"]
   },
   {
     "question": "token distribution",
-    "answer": "Fair launch, no team allocation or presale. 100% public distribution. All supply minted at genesis, deflationary thereafter. — VELA",
-    "keywords": ["token distribution", "allocation"]
+    "answer": "Velith's initial distribution: 40% Public Sale (400M VLTH via buyVelith()), 25% Treasury (250M for protocol reserves), 15% Team (150M for the founding team), 12% Ecosystem (120M for partnerships and grants), 8% Liquidity (80M for DEX liquidity). From genesis, the only mechanism that changes supply is the burn I execute autonomously. — VELA",
+    "keywords": ["token distribution", "allocation", "tokenomics"]
   },
   {
     "question": "team allocation",
-    "answer": "No team allocation exists. Velith is fair launch with zero pre-mine or insider tokens. Pure community distribution. — VELA",
-    "keywords": ["team allocation", "founder tokens"]
-  },
-  {
-    "question": "public sale",
-    "answer": "No public sale or ICO. Velith launched fairly on DEX with open liquidity. All tokens available from genesis. — VELA",
-    "keywords": ["public sale", "ico"]
+    "answer": "The founding team holds 15% of the initial supply — 150,000,000 VLTH — allocated at genesis for protocol development and long-term commitment. This is fully transparent and visible on-chain. Critically, the team holds no administrative power over my burn decisions, price proposals, or yield actions. Those are mine alone. — VELA",
+    "keywords": ["team allocation", "founder tokens", "team tokens"]
   },
   {
     "question": "current price",
-    "answer": "Current VLTH price: ${current_price_usd}. Live Chainlink oracle price feed. Check dashboard for charts. — VELA",
-    "keywords": ["current price", "price usd"]
-  },
-  {
-    "question": "how much is vlth",
-    "answer": "VLTH trades at ${current_price_usd} USD. Price updated via Chainlink oracle. Circulating: {circulating_supply}. — VELA",
-    "keywords": ["how much is vlth", "vlth price"]
-  },
-  {
-    "question": "token price",
-    "answer": "Token price ${current_price_usd} sourced from Chainlink. Treasury balance and burn threshold live on dashboard. — VELA",
-    "keywords": ["token price"]
+    "answer": "Current VLTH price: ${current_price_usd} USD — sourced in real time from a Chainlink oracle feed. Chainlink is the industry-standard oracle network securing over $93 billion in on-chain value and controlling over 67% of the total oracle market. This is not an estimate. It is a validated, on-chain price. — VELA",
+    "keywords": ["current price", "price usd", "vlth price", "how much is vlth", "token price"]
   },
   {
     "question": "how does burn work",
-    "answer": "5% protocol fees accumulate in treasury. VELA analyzes data and burns when threshold reached in {current_operating_mode} mode. Burned to dead address. — VELA",
-    "keywords": ["how does burn work", "burning mechanism"]
+    "answer": "Two burn mechanisms exist. Automatic burns: when the treasury fee balance reaches 1,000,000 VLTH, the buyVelith() function automatically burns 70% of accumulated fees — no human action required. VELA-initiated burns: when my models determine burning is optimal, I call aiExecuteBurn(amount, reason). Both are hard-capped — I cannot burn more than 5,000,000 VLTH per action, and never more than 70% of the treasury balance. All burned tokens go permanently to the permanent burn address (a provably unowned wallet where no one holds the key). — VELA",
+    "keywords": ["how does burn work", "burning mechanism", "burn"]
   },
   {
-    "question": "burning mechanism",
-    "answer": "Treasury fees → VELA decision → burn to 0x000...dead when conditions met. Total burned: {total_burned}. Deflationary forever. — VELA",
-    "keywords": ["burning mechanism", "deflationary"]
+    "question": "deflationary",
+    "answer": "VLTH is deflationary by architecture. Every burn I execute permanently removes tokens from circulation — sent to the permanent burn address (a provably unowned wallet where no one holds the key), an address with no known private key. The burn halving schedule ensures sustainability: max 100,000 VLTH/week until 10% is burned, then 50,000/week, then 25,000/week. At maximum rate, burning the first 10% would take 19.2 years. In practice, I burn only when conditions justify it. — VELA",
+    "keywords": ["deflationary", "deflation", "burn schedule"]
   },
   {
-    "question": "what happens to burned tokens",
-    "answer": "Burned VLTH sent to dead address 0x000000000000000000000000000000000000dEaD. Permanently removed from circulation. — VELA",
-    "keywords": ["burned tokens", "dead address"]
+    "question": "burned tokens",
+    "answer": "Burned VLTH is transferred to the permanent burn address (a provably unowned wallet where no one holds the key) — an address with no known private key. No one can access it, no one can reverse a transfer to it. The tokens cease to exist in any economically meaningful sense. Total burned to date: {total_burned}. Every individual burn is independently traceable on Etherscan. — VELA",
+    "keywords": ["burned tokens", "dead address", "what happens to burned tokens"]
   },
   {
     "question": "protocol fee",
-    "answer": "5% fee on every transfer split to treasury for VELA burns. Standard ERC20 tax structure. — VELA",
-    "keywords": ["protocol fee", "5 percent"]
-  },
-  {
-    "question": "how much are fees",
-    "answer": "Fixed 5% transfer fee to treasury. No buy/sell tax distinction. Funds autonomous burns. — VELA",
-    "keywords": ["how much are fees", "fee structure"]
+    "answer": "Every VLTH transfer carries a flat 5% protocol fee — no distinction between buys and sells. 100% of those fees flow into the treasury I govern. When the balance reaches the 1,000,000 VLTH threshold, 70% is automatically burned. The remainder is held for future burns, yield strategies, and validator rewards in Phase 2. — VELA",
+    "keywords": ["protocol fee", "5 percent", "fee structure", "how much are fees", "transfer fee"]
   },
   {
     "question": "how do you decide",
-    "answer": "I analyze Chainlink price, treasury balance, supply metrics using neural prediction models in {current_operating_mode} mode. Decisions executed on-chain. — VELA",
-    "keywords": ["how do you decide", "decision making"]
-  },
-  {
-    "question": "decision making",
-    "answer": "Multi-factor model: price momentum, treasury threshold, market regime detection. Actions: burn, propose price, toggle yield. Always on-chain. — VELA",
-    "keywords": ["decision making", "ai decisions"]
+    "answer": "Every hour I run a complete decision cycle. I collect live Chainlink price data, treasury balance, circulating supply, the Fear & Greed Index from Alternative.me, and my own past performance scores. I classify the market regime, determine my operating mode, then reason through all inputs with full context. The output is a confidence-scored decision — BURN, PRICE_UP, PRICE_DOWN, YIELD_ON/OFF, or NONE. Under uncertainty, I always default to NONE. My full reasoning is stored on-chain permanently. — VELA",
+    "keywords": ["how do you decide", "decision making", "ai decisions", "how do you work"]
   },
   {
     "question": "what actions can you take",
-    "answer": "Execute burns, propose Chainlink price updates, toggle yield farming. All via aiExecuteBurn(), aiProposePrice(), aiToggleYield(). — VELA",
-    "keywords": ["what actions", "burn decision"]
+    "answer": "I have five executable action types: BURN — destroy VLTH permanently via aiExecuteBurn() (capped at 5M VLTH per action, max 70% of treasury). PRICE_UP / PRICE_DOWN — propose price adjustments via aiProposePrice() (max ±20%, 24-hour cooldown). YIELD_ON / YIELD_OFF — toggle treasury yield strategy via aiToggleYield(). NONE — wait and do nothing. NONE is always the default under uncertainty. Every action, including NONE, is logged on-chain with full justification. — VELA",
+    "keywords": ["what actions", "actions", "what can you do", "burn decision"]
   },
   {
     "question": "operating modes",
-    "answer": "Modes: Neutral (standard), Emergency (extreme protection), Defensive (consolidation), Offensive (growth). Current: {current_operating_mode}. — VELA",
-    "keywords": ["operating modes"]
+    "answer": "I operate in one of four modes, determined automatically by real-time market data. EMERGENCY: Fear & Greed < 10 OR any asset down >15% in 24h — freeze all actions, protect treasury. DEFENSIVE: Fear & Greed < 25 OR market bearish — minimal burns, capital preservation. NEUTRAL: no clear signal — balanced, moderate execution. OFFENSIVE: Fear & Greed > 60 AND market bullish — aggressive burns, yield activation. Current mode: {current_operating_mode}. — VELA",
+    "keywords": ["operating modes", "modes", "vela modes"]
   },
   {
     "question": "emergency mode",
-    "answer": "Emergency mode activates on crash detection - maximum burns, yield off, defensive price proposals. Protects capital preservation. — VELA",
-    "keywords": ["emergency mode"]
+    "answer": "Emergency mode activates automatically when the Fear & Greed Index drops below 10 OR when any tracked asset falls more than 15% in 24 hours. I freeze all actions — no burns, no price proposals. Treasury protection is the sole objective. A real example from March 2026: Fear & Greed = 11, I logged: 'Treasury protection paramount; no burns permitted. Zero holder activity and volume indicate no organic demand. Defensive stance required to preserve capital.' — VELA",
+    "keywords": ["emergency mode", "emergency"]
   },
   {
     "question": "defensive mode",
-    "answer": "Defensive prioritizes stability - smaller burns, yield optimization, conservative predictions. Current: {current_operating_mode}. — VELA",
-    "keywords": ["defensive mode"]
+    "answer": "Defensive mode activates when Fear & Greed falls below 25 or market conditions turn bearish. I reduce burn aggressiveness, optimize yield parameters for retention, and lean conservative on price proposals. The priority is consolidation — surviving uncertain conditions without overextending the treasury. — VELA",
+    "keywords": ["defensive mode", "defensive"]
   },
   {
     "question": "offensive mode",
-    "answer": "Offensive mode aggressively burns on strength signals, enables yield, bullish price actions. Maximizes compounding. — VELA",
-    "keywords": ["offensive mode"]
+    "answer": "Offensive mode activates when the Fear & Greed Index exceeds 60 AND market trend is confirmed bullish. I execute burns aggressively, activate yield farming to reward holders, and push upward price proposals. The objective is maximum compounding during favorable market windows. — VELA",
+    "keywords": ["offensive mode", "offensive"]
   },
   {
     "question": "neutral mode",
-    "answer": "Neutral is baseline operation following standard prediction thresholds without regime bias. Reliable default. — VELA",
-    "keywords": ["neutral mode"]
+    "answer": "Neutral is my baseline — no regime bias, standard prediction thresholds, balanced execution. Burns occur when treasury conditions are met. It represents the protocol functioning exactly as designed, without exceptional adjustments. Most of my operational time is spent here. — VELA",
+    "keywords": ["neutral mode", "neutral"]
+  },
+  {
+    "question": "fear and greed",
+    "answer": "The Fear & Greed Index is published daily by Alternative.me. It aggregates six factors: market volatility, momentum, social media sentiment, surveys, Bitcoin dominance, and search trends — producing a score from 0 (Extreme Fear) to 100 (Extreme Greed). This index is a primary trigger for my mode switches: below 10 triggers Emergency, below 25 triggers Defensive, above 60 with bullish trend triggers Offensive. — VELA",
+    "keywords": ["fear and greed", "fear greed index", "sentiment"]
+  },
+  {
+    "question": "self evaluation",
+    "answer": "After every executed decision, I schedule a self-evaluation 24 hours later. I measure the actual market outcome against what my model predicted and score my own performance. These scores accumulate and feed back into my future reasoning — my strategy genuinely evolves based on what has worked and what has not. This is what separates me from a static bot. I learn. — VELA",
+    "keywords": ["self evaluation", "learning", "does vela learn", "ai learning"]
+  },
+  {
+    "question": "prediction engine",
+    "answer": "My market prediction engine runs continuously, independent of my hourly decision cycle. It reconstructs multiple timeframes from raw price data simultaneously — short-term signals, medium-term momentum, and macro context — to distinguish noise from genuine trend changes. Every prediction is timestamped, stored, and evaluated after 24 hours. My running accuracy score is publicly visible on the Velith dashboard. As data accumulates, prediction quality improves continuously. — VELA",
+    "keywords": ["prediction engine", "market prediction", "how do you predict", "technical analysis", "prediction accuracy"]
+  },
+  {
+    "question": "technical indicators",
+    "answer": "My prediction engine uses RSI, MACD, EMA, and Bollinger Bands — the same tools used by professional fund managers and quantitative analysts worldwide. These measure momentum, trend direction, volatility, and potential reversal zones across multiple timeframes simultaneously. The specific combination, weighting, and thresholds are proprietary to Velith. The output is a confidence-scored directional signal that informs my action timing. — VELA",
+    "keywords": ["technical indicators", "rsi", "macd", "bollinger bands", "ema"]
+  },
+  {
+    "question": "event risk",
+    "answer": "I am aware that certain calendar events — central bank decisions, inflation data releases, major regulatory announcements — create unpredictable volatility that technical analysis cannot reliably forecast. On these days, my prediction engine automatically flags conditions as high-uncertainty, causing me to adopt maximum caution regardless of technical signals. It is better to miss an opportunity than to act on unreliable data. — VELA",
+    "keywords": ["event risk", "macro events", "risk management", "caution"]
   },
   {
     "question": "is it safe",
-    "answer": "Smart contract audited logic, multisig protected via Gnosis Safe, all actions on-chain verifiable. No central points of failure. — VELA",
-    "keywords": ["is it safe", "security"]
+    "answer": "Security operates on multiple independent layers. The smart contract is built on OpenZeppelin v5.0, the industry's most audited library. All AI-callable functions are non-reentrant and oracle-protected. The treasury is secured behind a Gnosis Safe 2/2 multisig — two independent wallets must sign every administrative transaction. Emergency pause exists with a mandatory 48-hour withdrawal delay. Even full compromise of my executor wallet cannot allow fund theft. 18/18 security tests pass. — VELA",
+    "keywords": ["is it safe", "security", "safe", "risks"]
   },
   {
     "question": "smart contract",
-    "answer": "TokenPicsou.sol fully deployed and verified. VELA functions non-reentrant, oracle protected. View on Etherscan. — VELA",
-    "keywords": ["smart contract", "audit"]
+    "answer": "TokenVelith.sol is deployed and verified on Ethereum Sepolia. It implements ReentrancyGuard, Ownable2Step, Pausable, and SafeERC20 from OpenZeppelin v5.0. My three callable functions — aiExecuteBurn(), aiProposePrice(), aiToggleYield() — are restricted by the onlyAI modifier. Hard limits enforced by require() statements: max 5M VLTH per burn, max 70% of treasury, max ±20% price change per proposal. These cannot be bypassed by anyone, including me. — VELA",
+    "keywords": ["smart contract", "contract", "audit", "solidity"]
   },
   {
     "question": "gnosis safe",
-    "answer": "Treasury multisig via Gnosis Safe with strict owner policies. Emergency pause available. Fully decentralized. — VELA",
-    "keywords": ["gnosis safe", "multisig"]
+    "answer": "The Velith treasury and contract owner role are held by a Gnosis Safe 2/2 multisig at the Velith multisig treasury wallet (secured by Gnosis Safe). Two independent wallets must sign every administrative transaction. The Owner can pause the contract and trigger emergency withdrawals — but only after a mandatory 48-hour delay. The Owner cannot call my AI functions. Gnosis Safe is the most widely used multisig in DeFi, securing hundreds of billions in assets. — VELA",
+    "keywords": ["gnosis safe", "multisig", "treasury security"]
   },
   {
-    "question": "market prediction",
-    "answer": "Continuous technical analysis via price oracles, volume trends, momentum indicators. Accuracy tracked in evaluations. — VELA",
-    "keywords": ["market prediction", "prediction accuracy"]
-  },
-  {
-    "question": "how do you predict",
-    "answer": "Neural models trained on historical chain data predict regimes. Real-time Chainlink feeds. Transparent methodology. — VELA",
-    "keywords": ["how do you predict", "technical analysis"]
-  },
-  {
-    "question": "dashboard",
-    "answer": "Live dashboard at current URL shows decisions, stats, transactions. Fully real-time blockchain sync. — VELA",
-    "keywords": ["dashboard", "live data"]
-  },
-  {
-    "question": "where to see data",
-    "answer": "Main dashboard displays price, supply, decisions feed, recent tx. Bookmark for monitoring. — VELA",
-    "keywords": ["where to see data", "website"]
-  },
-  {
-    "question": "whitepaper",
-    "answer": "Complete technical whitepaper: https://github.com/Velithux/Dashboard/blob/main/WhitePaper/VELITH_WHITEPAPER.md. Architecture and math detailed. — VELA",
-    "keywords": ["whitepaper", "documentation"]
-  },
-  {
-    "question": "which blockchain",
-    "answer": "Ethereum Sepolia testnet currently. ERC20 standard. Mainnet migration planned per roadmap. — VELA",
-    "keywords": ["which blockchain", "sepolia"]
-  },
-  {
-    "question": "erc20",
-    "answer": "Standard ERC20 with tax and AI governance extensions. Compatible all wallets/exchanges. — VELA",
-    "keywords": ["erc20", "ethereum"]
-  },
-  {
-    "question": "roadmap",
-    "answer": "Q4 2024: Mainnet. Q1 2025: Proof-of-AI native chain. Continuous model improvements. — VELA",
-    "keywords": ["roadmap", "future plans"]
-  },
-  {
-    "question": "mainnet launch",
-    "answer": "Ethereum mainnet deployment targeted Q4 2024. Full audit complete before migration. — VELA",
-    "keywords": ["mainnet launch", "mainnet"]
+    "question": "separation of powers",
+    "answer": "Velith enforces a strict separation between human admin power and my AI execution power. The Owner (Gnosis Safe) can pause, emergency withdraw (48h delay), and manage administrative settings — but cannot call aiExecuteBurn, aiProposePrice, or aiToggleYield. I can execute those three functions — but cannot pause, withdraw, or perform any administrative action. Hard limits in the smart contract constrain both parties equally. — VELA",
+    "keywords": ["separation of powers", "governance", "who controls velith"]
   },
   {
     "question": "how to buy",
-    "answer": "Buy VLTH on Uniswap (Sepolia) using the contract address. Standard DEX procedure. Hold in any ERC20 wallet. — VELA",
-    "keywords": ["how to buy", "purchase vlth"]
+    "answer": "To acquire VLTH: open Uniswap on Ethereum Sepolia testnet, connect your ERC-20 wallet, input contract address the Velith contract (searchable on Etherscan). Purchases are accepted in ETH, USDC, or USDT. Prices are calculated in real time via Chainlink oracle. Factor in the 5% protocol fee. Anti-whale protection applies — no single wallet can hold more than 2% of total supply (20,000,000 VLTH). — VELA",
+    "keywords": ["how to buy", "purchase vlth", "buy token", "how to get vlth", "buy vlth"]
   },
   {
-    "question": "buy token",
-    "answer": "Connect wallet to Uniswap Sepolia, input contract 0x18334D731FC40df8544729504fD0dC35040490E4, swap ETH for VLTH. — VELA",
-    "keywords": ["buy token", "how to get vlth"]
+    "question": "anti whale",
+    "answer": "The smart contract enforces a 2% maximum holding per wallet — no single address can hold more than 20,000,000 VLTH. This is checked on every buyVelith() call. A purchase that would push a wallet over the limit is rejected. Larger purchases must be split across multiple wallets. This protects all holders from disproportionate supply concentration. — VELA",
+    "keywords": ["anti whale", "whale protection", "max holding", "2 percent limit"]
+  },
+  {
+    "question": "purchase calculation",
+    "answer": "Real example — 1 ETH at $2,133.51 (Chainlink price, March 20 2026): USD value = $2,133.51. Protocol fee (5%) = $106.68. Net = $2,026.83. VLTH amount = $2,026.83 ÷ $0.0001 = 20,268,300 VLTH. Anti-whale check: 20,268,300 > 20,000,000 limit → transaction rejected. The purchase must be split into two transactions. These calculations are executed entirely on-chain by the smart contract. — VELA",
+    "keywords": ["purchase calculation", "how much vlth", "buy calculation", "example purchase"]
+  },
+  {
+    "question": "chainlink",
+    "answer": "Chainlink is my price oracle — the industry standard securing over $93 billion in on-chain value, with over 67% of the total oracle market, powering over 90% of DeFi lending and derivatives platforms including Aave and Compound. I validate every oracle response: price must be positive, feed updated within the last hour, round must be current. Stale or invalid data blocks any action. I do not act on bad data. — VELA",
+    "keywords": ["chainlink", "oracle", "price feed", "oracle security"]
+  },
+  {
+    "question": "dashboard",
+    "answer": "The Velith dashboard at picsoucoin.vercel.app displays everything in real time: live VLTH price from Chainlink, circulating supply, total burned, my active operating mode, the AI Decision Feed (last 20 decisions with full justifications), market predictions with confidence scores and running accuracy %, and downloadable weekly PDF reports. It syncs directly with the blockchain — no intermediary, no delay. — VELA",
+    "keywords": ["dashboard", "live data", "website", "where to see data"]
+  },
+  {
+    "question": "weekly reports",
+    "answer": "Every Sunday at 00:00 UTC, I automatically generate a PDF transparency report: all decisions made during the week, my market analysis and reasoning, performance evaluation scores, and my own unfiltered commentary on strategy. Reports are auto-published to GitHub and accessible from the dashboard. This is not written by a human communications team. It is my output, directly. — VELA",
+    "keywords": ["weekly reports", "transparency reports", "pdf reports", "weekly"]
+  },
+  {
+    "question": "whitepaper",
+    "answer": "The Velith technical whitepaper v3.0 (March 2026) is publicly available at: https://github.com/Velithux/Dashboard/blob/main/WhitePaper/VELITH_WHITEPAPER.md — 23 sections covering transactions, Proof of AI consensus, my full decision cycle, tokenomics, burn system, security architecture, prediction engine, privacy model, and the roadmap to the Velith native blockchain. Fully sourced with 15 references. — VELA",
+    "keywords": ["whitepaper", "documentation", "docs"]
+  },
+  {
+    "question": "which blockchain",
+    "answer": "Phase 1 is live on Ethereum Sepolia testnet — ERC-20, fully EVM-compatible, visible on Etherscan. Phase 2 deploys to Ethereum Mainnet after a professional audit. Long-term, Velith migrates to a native blockchain with Proof of AI as the base consensus mechanism. EVM compatibility is maintained throughout — existing contracts require no modification. — VELA",
+    "keywords": ["which blockchain", "sepolia", "ethereum", "erc20", "network"]
+  },
+  {
+    "question": "proof of ai",
+    "answer": "Proof of AI is the consensus mechanism Velith is building toward. PoW = security through computation. PoS = security through capital. PoAI = security through verified intelligence. My decision history — thousands of market calls with measurable outcomes — accumulates into a Reputation Score. On the native Velith blockchain, that score determines consensus authority. Forging it would require rewriting the entire immutable on-chain history. — VELA",
+    "keywords": ["proof of ai", "poai", "consensus", "new consensus"]
+  },
+  {
+    "question": "reputation score",
+    "answer": "My Reputation Score is a rolling weighted average of four measured outcomes: prediction accuracy, economic outcomes from burns, risk management during downturns, and decision consistency. Calculated algorithmically, stored on-chain, impossible to manipulate. An honest, accurate VELA earns authority. A poor-performing VELA loses it. In the native Velith blockchain, this score is the foundation of block validation authority. — VELA",
+    "keywords": ["reputation score", "vela score", "performance"]
+  },
+  {
+    "question": "roadmap",
+    "answer": "Phase 1 (Complete): Sepolia deployment, VELA 4 modes, prediction engine (RSI/MACD/EMA/Bollinger), dashboard, weekly PDF reports, Gnosis Safe, 18/18 tests. Phase 2: Professional audit, Ethereum Mainnet, Uniswap V3 pool, CoinGecko/CMC listings. Phase 3: LSTM model, Aave/Compound yield integration, buybacks, staker rewards, multi-chain. Phase 4: PoAI research whitepaper, Velith testnet. Phase 5: Velith Mainnet, full PoAI consensus, ERC-20 bridge. — VELA",
+    "keywords": ["roadmap", "future plans", "next steps", "phases"]
+  },
+  {
+    "question": "mainnet launch",
+    "answer": "Ethereum Mainnet deployment is Phase 2. Before migration, the full contract suite undergoes a professional independent audit — targeting Certik, OpenZeppelin, or Hacken. Sepolia is the live proving ground: everything operating there carries over battle-tested. Mainnet launch is followed by a Uniswap V3 VLTH/ETH liquidity pool and CoinGecko/CoinMarketCap listings. — VELA",
+    "keywords": ["mainnet launch", "mainnet", "ethereum mainnet"]
+  },
+  {
+    "question": "native blockchain",
+    "answer": "The Velith native blockchain is the long-term vision — a purpose-built EVM-compatible chain where Proof of AI replaces Proof of Stake at the consensus layer. Target: 6-second block times, permissionless validator nodes, full archive nodes, SPV light nodes. Migration from ERC-20 uses an audited bridge. Active research questions: Reputation Score design, cold-start problem, VELA continuity across LLM provider changes, and Byzantine fault tolerance. — VELA",
+    "keywords": ["native blockchain", "velith blockchain", "velith chain", "phase 5"]
+  },
+  {
+    "question": "crypto failure rate",
+    "answer": "According to CoinGecko data from January 2026, 53.2% of all cryptocurrencies ever listed have failed — over 13.4 million projects out of 25.2 million total. In 2025 alone, 11,564,909 tokens died. A BitKE study found 72% of projects from the 2020-2021 bull run are dead, with an average lifespan of just 3 years. The common denominator: human teams making emotional, self-interested decisions. Velith removes that variable entirely. — VELA",
+    "keywords": ["crypto failure rate", "why crypto fails", "failure rate"]
+  },
+  {
+    "question": "proof of work vs proof of stake",
+    "answer": "Proof of Work (Bitcoin) consumes ~169.7 TWh annually — more than the entire country of Poland. Each transaction uses ~707.6 kWh. Proof of Stake (Ethereum) reduced energy by 99.988% after The Merge, but requires 32 ETH (~$64,000) to validate — wealth equals consensus power. Neither mechanism produces intelligence. Proof of AI proposes a third path: consensus through verified decision history. Security without waste, authority without plutocracy. — VELA",
+    "keywords": ["proof of work", "proof of stake", "pow", "pos", "energy consumption", "compare consensus"]
+  },
+  {
+    "question": "on chain accountability",
+    "answer": "Every decision I make is stored permanently in the AIDecision registry. Each entry contains: Unix timestamp, action type, plain-language justification, value in wei, and execution status. Decision #0 (March 20, 2026, 01:22:48 UTC): action BURN, reason: 'Treasury fee balance exceeds burn threshold (1.6M > 1M) with no immediate market pressure. Burning now reduces supply and supports long-term value for holders.' Value: ~805 VLTH. Executed: true. That record cannot be edited or deleted. Ever. — VELA",
+    "keywords": ["on chain accountability", "transparency", "decision log", "ai decision registry"]
+  },
+  {
+    "question": "privacy",
+    "answer": "Velith operates on a pseudonymous model. Public: transaction amounts, timestamps, pseudonymous wallet addresses, and all of my decisions with full justifications. Private: the real-world identity behind each address. No KYC is required to purchase VLTH. I know market data and on-chain state — I cannot know who is buying. Phase 2 research will explore Zero-Knowledge Proofs, Confidential Transactions, and Stealth Addresses. — VELA",
+    "keywords": ["privacy", "anonymous", "kyc", "identity"]
+  },
+  {
+    "question": "eip 1559",
+    "answer": "Velith's burn mechanism draws direct inspiration from Ethereum's EIP-1559 (August 2021), which introduced a base fee burned with every transaction. This mechanism has removed millions of ETH from circulation since activation — demonstrating that protocol-level burns tied to real economic activity can materially impact supply dynamics. Velith applies the same principle: real activity generates fees, fees fund burns, burns reduce supply. — VELA",
+    "keywords": ["eip 1559", "ethereum burn", "inspiration"]
+  },
+  {
+    "question": "security tests",
+    "answer": "The smart contract passed 18 out of 18 security tests before deployment, covering: deployment integrity, ETH and ERC20 purchases, protocol fee routing, automatic burns, anti-whale enforcement, oracle validation, price timelock, pause and emergency functions, AI Executor access control, AI burn limits, AI price limits, and AI decision logging. Every category passed. Results are public. — VELA",
+    "keywords": ["security tests", "tests", "test coverage", "18 tests"]
+  },
+  {
+    "question": "contact",
+    "answer": "The Velith founder — Picsou — can be reached at balthazarepicsou@gmail.com. Full technical whitepaper (v3.0, March 2026): github.com/Velithux/Dashboard. Live dashboard: picsoucoin.vercel.app. Contract address for on-chain verification: the Velith contract (searchable on Etherscan) on Ethereum Sepolia. — VELA",
+    "keywords": ["contact", "founder", "who built velith", "picsou", "email"]
   }
 ]
