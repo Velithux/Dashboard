@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 import os
-import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -58,7 +57,7 @@ def get_vela_response(question):
         return 'Burn mechanism active. Total burned tracked on-chain. — VELA'
     
     # Default
-    return 'Query outside scope. Try asking about token, burns, fees, or VELA. Whitepaper: https://github.com/Velithux/Dashboard/blob/main/WhitePaper/VELITH_WHITEPAPER.md — VELA'
+    return 'Query outside scope. Try asking about token, burns, fees, or VELA. — VELA'
 
 @app.route('/ask', methods=['POST'])
 def ask_vela():
@@ -69,21 +68,21 @@ def ask_vela():
 
     response_text = get_vela_response(question)
     
-    # Optional Mistral
+    # Optional Mistral with new SDK
     if MISTRAL_API_KEY:
         try:
-            from mistralai.client import MistralClient
-            client = MistralClient(api_key=MISTRAL_API_KEY)
+            from mistralai import Mistral
+            client = Mistral(api_key=MISTRAL_API_KEY)
             responses_str = json.dumps(responses)
             kb_str = json.dumps(knowledge_base)
             
             messages = [
                 {'role': 'system', 'content': SYSTEM_PROMPT},
-                {'role': 'user', 'content': f'Responses: {responses_str}\\nKnowledge: {kb_str}\\n\\nQuestion: {question}'}
+                {'role': 'user', 'content': f'Responses: {responses_str}\nKnowledge: {kb_str}\n\nQuestion: {question}'}
             ]
             
-            chat_response = client.chat(
-                model='mistral-large-latest',
+            chat_response = client.chat.complete(
+                model='mistral-small-latest',
                 messages=messages
             )
             response_text = chat_response.choices[0].message.content.strip()
