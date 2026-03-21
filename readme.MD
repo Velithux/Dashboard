@@ -1,41 +1,41 @@
-# PicsouCoin ($PICSOU)
+# Velith ($VLTH)
 ### The first cryptocurrency autonomously governed by Artificial Intelligence
 
 > *No human decides. The AI works for you — 24/7, transparently, on-chain.*
 
 ---
 
-## What is PicsouCoin?
+## What is Velith?
 
-PicsouCoin ($PICSOU) is not just another token.
+Velith ($VLTH) is not just another token.
 
-It is the **first cryptocurrency in history** where every strategic decision — burns, price adjustments, yield activation — is made exclusively by an Artificial Intelligence, not by humans.
+It is the **first cryptocurrency in history** where every strategic decision — burns, price adjustments, yield activation — is made exclusively by an Artificial Intelligence named **VELA** (Velith Autonomous Learning Agent).
 
-Every hour, the AI analyzes the crypto market in real time and decides autonomously what action will best serve $PICSOU holders. Every decision is permanently recorded on the blockchain with a public justification, readable by anyone, anywhere, forever.
+Every hour, VELA analyzes the crypto market in real time and decides autonomously what action will best serve $VLTH holders. Every decision is permanently recorded on the blockchain with a public justification, readable by anyone, anywhere, forever.
 
 No team meeting. No vote. No manipulation. Just AI working for you.
 
 ---
 
-## Why PicsouCoin is Different
+## Why Velith is Different
 
 Most crypto projects claim decentralization — but humans still pull the strings behind the scenes.
 
-**PicsouCoin eliminates human bias entirely.**
+**Velith eliminates human bias entirely.**
 
-The AI doesn't have emotions. It doesn't panic sell. It doesn't get greedy. It doesn't have a hidden agenda. It has one mission: **maximize long-term value for $PICSOU holders.**
+VELA doesn't have emotions. She doesn't panic sell. She doesn't get greedy. She doesn't have a hidden agenda. She has one mission: **maximize long-term value for $VLTH holders.**
 
-And everything it does is public. Permanent. Verifiable.
+And everything she does is public. Permanent. Verifiable.
 
 ---
 
-## How the AI Works
+## How VELA Works
 
 ```
-Every hour →  AI reads market data
-               (ETH price, BTC, Fear & Greed Index, DeFi yields)
+Every hour →  VELA reads market data
+               (ETH price, BTC, Fear & Greed Index, market trends)
                         ↓
-              AI reasons and decides
+              VELA reasons and decides
                         ↓
          BURN tokens  /  ADJUST price  /  DO NOTHING
                         ↓
@@ -43,19 +43,21 @@ Every hour →  AI reads market data
          + public justification stored forever
 ```
 
-You can read every single decision the AI has ever made — directly on the blockchain. No black box. No secrets.
+You can read every single decision VELA has ever made — directly on the blockchain. No black box. No secrets.
 
 ---
 
 ## Key Features
 
-- **Fixed supply** — 1,000,000,000 $PICSOU. Created once. Never again.
-- **AI-only decisions** — burns and price adjustments exclusively controlled by the AI
+- **Fixed supply** — 1,000,000,000 $VLTH. Created once. Never again.
+- **AI-only decisions** — burns and price adjustments exclusively controlled by VELA
 - **Fully transparent** — every AI action publicly justified and stored on-chain
 - **Anti-whale protection** — max 2% of supply per wallet
 - **Multi-crypto purchase** — buy with ETH or stablecoins
 - **5% protocol fee** — funds AI operations and treasury, fully disclosed
 - **Immutable contract** — no upgrade, no hidden mint, no backdoor
+- **Self-improving AI** — VELA evaluates her own decisions and adjusts over time
+- **Weekly AI reports** — VELA publishes a PDF transparency report every Sunday
 
 ---
 
@@ -74,43 +76,52 @@ Supply is fixed. No mint function exists. Not now, not ever.
 
 ---
 
-## How to Buy $PICSOU
+## How to Buy $VLTH
 
-PicsouCoin is currently in **Testnet phase** (Sepolia) — this means you can experience the full ecosystem with no real money involved.
+Velith is currently in **Testnet phase** (Sepolia) — you can explore the full ecosystem with no real money involved.
 
 **Mainnet launch coming soon.**
 
 To be notified at launch and get early access:
 
-📧 **Contact us: balthazarepicsou@gmail.com**
+📧 **Contact: balthazarepicsou@gmail.com**
 
 ---
 
 ## Security
 
-PicsouCoin was built with security as the top priority:
+Velith was built with security as the top priority:
 
-- AI actions are strictly limited — max burn per action, price change capped at ±20%, 1 hour cooldown between actions
+- AI actions are strictly limited — hard caps enforced by smart contract
 - The AI wallet is completely separated from the owner wallet
 - Emergency mechanisms require a mandatory 48-hour delay
 - All price feeds validated via Chainlink oracles
+- Gnosis Safe 2/2 multisig governance
 - Smart contract passed full test suite — 18/18 tests passing
 
 ---
 
 ## Live Dashboard
 
-Track everything in real time — AI decisions, token price, circulating supply, total burned — on our public dashboard.
+Track everything in real time — VELA's decisions, token price, circulating supply, total burned, market predictions, and weekly reports.
 
-**Dashboard coming online very soon.**
+🌐 **[picsoucoin.vercel.app](https://picsoucoin.vercel.app)**
+
+---
+
+## Documentation
+
+- 📄 **[Whitepaper](https://github.com/Velithux/Dashboard/blob/main/WhitePaper/VELITH_WHITEPAPER.md)** — Vision, architecture, Proof of AI, roadmap
+- 🔴 **Red Book** — Behavioral proof & simulation document *(coming soon)*
+- 🟡 **Yellow Paper** — Formal technical specification *(forthcoming)*
 
 ---
 
 ## About
 
-PicsouCoin was created by **Picsou** — driven by one conviction: that an AI can manage a cryptocurrency better, fairer, and more transparently than any human team ever could.
+Velith was created by **Mael (Picsou)** — driven by one conviction: that an AI can manage a cryptocurrency better, fairer, and more transparently than any human team ever could.
 
-This is not a memecoin. This is not a pump-and-dump. This is a genuine experiment in AI-governed finance — built with real technology, real smart contracts, and a real autonomous AI making real decisions on a public blockchain.
+This is not a memecoin. This is not a pump-and-dump. This is a genuine experiment in AI-governed finance — built with real technology, real smart contracts, and a real autonomous AI making real on-chain decisions, publicly, every hour.
 
 📧 **Contact & Partnerships: balthazarepicsou@gmail.com**
 
@@ -118,16 +129,12 @@ This is not a memecoin. This is not a pump-and-dump. This is a genuine experimen
 
 ## Legal & Intellectual Property
 
-**© 2026 Picsou — All rights reserved.**
+**© 2026 Mael (Picsou) — All rights reserved.**
 
-This project, including its concept, architecture, smart contract, AI agent, and dashboard, was created by and belongs exclusively to **Picsou** under the project name **PicsouCoin**.
-
----
+This project, including its concept, architecture, smart contract, AI agent, and dashboard, was created by and belongs exclusively to **Mael** under the project name **Velith**.
 
 **License: CC BY-NC-ND 4.0**
 *(Creative Commons Attribution — Non Commercial — No Derivatives 4.0 International)*
-
-This project is published under the **CC BY-NC-ND 4.0** license:
 
 - ✅ You may **view** and **share** this project with proper attribution
 - ❌ **Commercial use is strictly prohibited** without written permission
@@ -136,25 +143,14 @@ This project is published under the **CC BY-NC-ND 4.0** license:
 
 > **All reproduction, modification, or distribution is strictly forbidden without prior written permission from the author.**
 
-For commercial licensing or partnership inquiries:
-📧 balthazarepicsou@gmail.com
-
----
-
 **Intellectual Property Notice:**
-
-The concept of a cryptocurrency fully governed by an AI with public on-chain justified decisions, the AI Executor role architecture, and the autonomous decision logging system are original innovations by **Picsou / PicsouCoin**.
-
-Any reproduction of these concepts without attribution and written permission constitutes a violation of intellectual property rights.
-
----
+The concept of an AI-governed cryptocurrency with public on-chain justified decisions, the AI Executor role architecture, the VELA system, and the Proof of AI consensus mechanism are original innovations by Mael / Velith. Any reproduction without attribution and written permission constitutes a violation of intellectual property rights.
 
 **Disclaimer:**
-
-$PICSOU is currently on Testnet. This is not financial advice. Cryptocurrency investments involve significant risk. The AI agent operates autonomously — past decisions do not guarantee future results.
+$VLTH is currently on Testnet. This is not financial advice. Cryptocurrency investments involve significant risk. VELA operates autonomously — past decisions do not guarantee future results.
 
 ---
 
 *Built with AI. Governed by AI. Transparent by design.*
 
-*© 2026 PicsouCoin — balthazarepicsou@gmail.com*
+*© 2026 Velith — balthazarepicsou@gmail.com*
