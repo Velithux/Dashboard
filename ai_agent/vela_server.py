@@ -36,7 +36,7 @@ def get_vela_response(question):
     
     # Token info
     if any(word in q for word in ['velith', 'token', 'vlth', 'what is']):
-        return 'Velith ($VLTH) is the first AI-governed cryptocurrency. Contract: 0x18334D731FC40df8544729504fD0dC35040490E4. — VELA'
+        return 'Velith ($VLTH) is the first AI-governed cryptocurrency. Contract: 0x25C9440C28c4a357A991A207CFf671Cf924671B1. — VELA'
     
     if 'supply' in q:
         return 'Total supply: 1B VLTH. Circulating: dynamic via AI burns. — VELA'
@@ -45,7 +45,7 @@ def get_vela_response(question):
         return 'Fees accumulate in treasury for autonomous burns. — VELA'
     
     if any(word in q for word in ['contract', 'address']):
-        return 'Contract: 0x18334D731FC40df8544729504fD0dC35040490E4 (Sepolia testnet). — VELA'
+        return 'Contract: 0x25C9440C28c4a357A991A207CFf671Cf924671B1 (Sepolia testnet). — VELA'
     
     if 'vela' in q:
         return 'I am VELA, neural AI executing $VLTH governance. — VELA'
@@ -68,7 +68,7 @@ def ask_vela():
 
     response_text = get_vela_response(question)
     
-    # Optional Mistral with new SDK
+    # Optional Mistral with new SDK v1.0.0+
     if MISTRAL_API_KEY:
         try:
             from mistralai import Mistral
@@ -78,7 +78,7 @@ def ask_vela():
             
             messages = [
                 {'role': 'system', 'content': SYSTEM_PROMPT},
-                {'role': 'user', 'content': f'Responses: {responses_str}\nKnowledge: {kb_str}\n\nQuestion: {question}'}
+                {'role': 'user', 'content': f'Responses: {responses_str}\\nKnowledge: {kb_str}\\n\\nQuestion: {question}'}
             ]
             
             chat_response = client.chat.complete(
