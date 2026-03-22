@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-22T18:46:50.293524",
+  "last_updated": "2026-03-22T20:36:26.414236",
   "project_facts": {
     "token_name": "Velith",
     "symbol": "VLTH",
@@ -33,8 +33,8 @@
     "avg_evaluation_score": "0.000",
     "current_operating_mode": "NEUTRAL",
     "last_prediction": {
-      "prediction": "UNCERTAIN",
-      "confidence": "0.43"
+      "prediction": "NEUTRAL",
+      "confidence": "0.50"
     }
   },
   "weekly_report_summary": {
